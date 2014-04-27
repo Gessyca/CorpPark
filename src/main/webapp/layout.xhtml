@@ -1,31 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="#{request.contextPath}/resources/css/default_theme.css"
-		rel="stylesheet" type="text/css" />
-	<link href="#{request.contextPath}/resources/css/bootstrap.min.css"
-		rel="stylesheet" type="text/css" media="screen" />
-	<link
-		href="#{request.contextPath}/resources/css/bootstrap-theme.min.css"
-		rel="stylesheet" type="text/css" media="screen" />
-	<link rel="icon" href="#{request.contextPath}/images/favicon.ico" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="#{request.contextPath}/resources/css/default_theme.css"
+	rel="stylesheet" type="text/css" />
+<link href="#{request.contextPath}/resources/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" media="screen" />
+<link
+	href="#{request.contextPath}/resources/css/bootstrap-theme.min.css"
+	rel="stylesheet" type="text/css" media="screen" />
+<link rel="icon" href="#{request.contextPath}/images/favicon.ico" />
 
-	<title>CH Torneios</title>
-
-	<link href="../../dist/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet" />
-	<link href="theme.css" rel="stylesheet" />
-</h:head>
+<title>CH Torneios</title>
+</head>
 
 <body>
-	<nav class="navbar navbar-inverse" role="navigation">
-		<button type="button" class="btn btn-default navbar-btn" >Novo Jogador</button>
+	<nav class="navbar navbar-inverse">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.xhtml">CH TORNEIOS</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="jogador.xhtml">Jogadores</a></li>
+				<li><a href="#">Torneios</a></li>
+				<li><a href="#">Cartas</a></li>
+			</ul>
+		</div>
+	</div>
 	</nav>
+	<div class="container" style="padding-top: 20px;">
+		<ui:insert name="content">Content</ui:insert>
+	</div>
 	<ui:insert name="jquery">
 		<script src="#{request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
 	</ui:insert>
