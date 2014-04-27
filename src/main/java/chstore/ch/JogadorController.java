@@ -5,6 +5,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import chstore.ch.entidade.Jogador;
+
 /**
  *
  * @author gessyca.lm

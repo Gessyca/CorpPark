@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="#{request.contextPath}/resources/css/default_theme.css"
+		rel="stylesheet" type="text/css" />
+	<link href="#{request.contextPath}/resources/css/bootstrap.min.css"
+		rel="stylesheet" type="text/css" media="screen" />
+	<link
+		href="#{request.contextPath}/resources/css/bootstrap-theme.min.css"
+		rel="stylesheet" type="text/css" media="screen" />
+	<link rel="icon" href="#{request.contextPath}/images/favicon.ico" />
+
+	<title>CH Torneios</title>
+
+	<link href="../../dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+	<link href="theme.css" rel="stylesheet" />
+</h:head>
+
+<body>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<button type="button" class="btn btn-default navbar-btn" >Novo Jogador</button>
+	</nav>
+	<ui:insert name="jquery">
+		<script src="#{request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
+	</ui:insert>
+	<script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="#{request.contextPath}/resources/js/main.js"></script>
+</body>
+</html>
