@@ -14,55 +14,79 @@ import javax.persistence.Id;
 @Entity
 public class Jogador {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String nome;
-	private String telefone;
-	private String email;
-	private Date dataNascimento;
+    private static final int HOMEM = 1;
+    private static final int MULHER = 2;
 
-	public Jogador() {
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String nome;
+    private String telefone;
+    private String email;
+    private Date dataNascimento;
+    private int sexo;
 
-	public int getId() {
-		return id;
-	}
+    public Jogador() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+	return id;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setId(int id) {
+	this.id = id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+	return nome;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public void setNome(String nome) {
+	this.nome = nome;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public String getTelefone() {
+	return telefone;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setTelefone(String telefone) {
+	this.telefone = telefone;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+	return email;
+    }
 
-	public Date getDataNascimento() {
-		return dataNascimento;
-	}
+    public void setEmail(String email) {
+	this.email = email;
+    }
 
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+    public Date getDataNascimento() {
+	return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+	this.dataNascimento = dataNascimento;
+    }
+
+    public int getSexo() {
+	return sexo;
+    }
+
+    public void setSexo(int sexo) {
+	this.sexo = sexo;
+    }
+
+    public String getSexoFormatado() {
+	String sexoAux = "";
+	if (sexo == 1) {
+	    sexoAux = "HOMEM";
+
+	} else {
+	    sexoAux = "MULHER";
+
 	}
+	return sexoAux;
+    }
 
 }

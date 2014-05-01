@@ -1,8 +1,12 @@
 package chstore.ch;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
+import chstore.ch.entidade.Jogador;
 
 /**
  *
@@ -28,5 +32,10 @@ public class JogadorJPA {
 
     public <T> void remover(T t) {
         em.remove(em.merge(t));
+    }
+    
+    public List<Jogador> buscarTodos(){
+	String jpql= "select j from Jogador j";
+	return em.createQuery(jpql, Jogador.class).getResultList();
     }
 }
