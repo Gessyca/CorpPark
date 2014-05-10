@@ -3,8 +3,11 @@ package chstore.ch;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import chstore.ch.entidade.Jogador;
@@ -14,15 +17,23 @@ import chstore.ch.entidade.Jogador;
  * @author gessyca.lm
  */
 @ManagedBean
+@ViewScoped
 public class JogadorController {
 
     @Inject
-    JogadorJPA jogadorJPA;
+    private JogadorJPA jogadorJPA;
     private String dataString;
+    private List<Jogador> jogadores;
 
-    private Jogador jogador = new Jogador();
+    private Jogador jogador;
 
-    public String salvar() {
+    @PostConstruct
+    public void inicializar() {
+	jogador = new Jogador();
+	jogadores = jogadorJPA.buscarTodos();
+    }
+
+    public void salvar() {
 
 	Date data;
 	try {
@@ -33,7 +44,9 @@ public class JogadorController {
 	}
 
 	jogadorJPA.salvar(jogador);
-	return "jogador";
+	inicializar();
+	jogador = new Jogador();
+	dataString = null;
     }
 
     public Jogador getJogador() {
@@ -50,6 +63,14 @@ public class JogadorController {
 
     public void setDataString(String dataString) {
 	this.dataString = dataString;
+    }
+
+    public List<Jogador> getJogadores() {
+	return jogadores;
+    }
+
+    public void setJogadores(List<Jogador> jogadores) {
+	this.jogadores = jogadores;
     }
 
 }
