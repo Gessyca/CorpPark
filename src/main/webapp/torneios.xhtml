@@ -1,17 +1,64 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
-	<ui:composition template="layout.xhtml">
-		<ui:define name="title">Torneios</ui:define>
-		<ui:define name="content">
-			<div class="panel panel-primary">
-				<div class="panel-heading">TORNEIOS REALIZADOS</div>
-			</div>
-		</ui:define>
-	</ui:composition>
+    <ui:composition template="layout.xhtml">
+        <ui:define name="title">Torneios</ui:define>
+        <ui:define name="content">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <a href="novo_torneio.xhtml" class="btn btn-primary"> <span class="glyphicon glyphicon-plus-sign" /> Novo Torneio</a>
+                </div>
+                <h:form>
+                    <h:dataTable id="TorneiosTables" value="#{torneioController.torneios}" var="t" styleClass="table table-striped">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Data" />
+                            </f:facet>
+                            <h:outputText value="#{t.dataTorneio}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Tipo torneio" />
+                            </f:facet>
+                            <h:outputText value="#{t.formato}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Qtd Jogadores" />
+                            </f:facet>
+                            <h:outputText value="#{t.qtdJogadores}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Local" />
+                            </f:facet>
+                            <h:outputText value="#{t.local}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Vencedor" />
+                            </f:facet>
+                            <h:outputText value="#{t.jogador.nome}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cla" />
+                            </f:facet>
+                            <h:outputText value="#{t.cla}" />
+                        </h:column>
+                        <h:column>
+                            <button jsf:id="btRemover" jsf:action="#{torneioController.remover}" class="btn btn-danger" type="submit">
+                                <span class="glyphicon glyphicon-trash" />
+                                <f:param name="id" value="#{t.id}" />
+                            </button>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>

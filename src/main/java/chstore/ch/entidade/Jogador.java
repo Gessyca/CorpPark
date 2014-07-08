@@ -2,16 +2,19 @@ package chstore.ch.entidade;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 
  * @author gessyca.lm
  */
 @Entity
+@Table(name = "jogador")
 public class Jogador {
 
     private static final int HOMEM = 1;
@@ -23,10 +26,10 @@ public class Jogador {
     private String nome;
     private String telefone;
     private String email;
+    @Column(name = "data_nascimento")
     private Date dataNascimento;
     private int sexo;
     private int pontuacao;
-    private String cla;
 
     public Jogador() {
     }
@@ -77,14 +80,6 @@ public class Jogador {
 
     public void setPontuacao(int pontuacao) {
 	this.pontuacao = pontuacao;
-    }
-
-    public String getCla() {
-	return cla;
-    }
-
-    public void setCla(String cla) {
-	this.cla = cla;
     }
 
     public int getSexo() {

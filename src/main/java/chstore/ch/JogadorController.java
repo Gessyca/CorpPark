@@ -33,6 +33,12 @@ public class JogadorController {
     public void inicializar() {
 	jogador = new Jogador();
 	jogadores = genericoJPA.buscarTodosJogadores();
+
+	if (id != null) {
+	    jogador = genericoJPA.buscarJogadorPorId(Integer.parseInt(id));
+	}
+	
+	System.out.println("ID: " + id);
     }
 
     public void salvar() {
@@ -45,7 +51,12 @@ public class JogadorController {
 	    e.printStackTrace();
 	}
 
-	genericoJPA.salvar(jogador);
+	if (jogador.getId() > 0) {
+	    genericoJPA.atualizar(jogador);
+	} else {
+	    genericoJPA.salvar(jogador);
+	}
+
 	inicializar();
 	jogador = new Jogador();
 	dataString = null;
@@ -53,7 +64,8 @@ public class JogadorController {
 
     public void remover() {
 
-	genericoJPA.remover(genericoJPA.buscarJogadorPorId(Integer.parseInt(id)));
+	genericoJPA
+		.remover(genericoJPA.buscarJogadorPorId(Integer.parseInt(id)));
     }
 
     public Jogador getJogador() {
