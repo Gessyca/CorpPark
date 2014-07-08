@@ -17,16 +17,13 @@
     <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="index.xhtml">CH TORNEIOS</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="cadastro_jogador.xhtml">Jogadores</a></li>
+                <li><a href="cadastro_jogador.xhtml">Jogadores <span class="badge pull-top">#{jogadorController.jogadores.size()}</span></a></li>
                 <li><a href="torneios.xhtml">Torneios</a></li>
-                <li><a href="#">Cartas</a></li>
+                <li><a href="ranking.xhtml">Ranking</a></li>
             </ul>
         </div>
     </div>

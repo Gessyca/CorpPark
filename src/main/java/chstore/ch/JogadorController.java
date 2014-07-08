@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 import chstore.ch.entidade.Jogador;
@@ -21,16 +21,18 @@ import chstore.ch.entidade.Jogador;
 public class JogadorController {
 
     @Inject
-    private JogadorJPA jogadorJPA;
+    private GenericoJPA genericoJPA;
     private String dataString;
     private List<Jogador> jogadores;
 
     private Jogador jogador;
 
+    private String id;
+
     @PostConstruct
     public void inicializar() {
 	jogador = new Jogador();
-	jogadores = jogadorJPA.buscarTodos();
+	jogadores = genericoJPA.buscarTodosJogadores();
     }
 
     public void salvar() {
@@ -43,10 +45,15 @@ public class JogadorController {
 	    e.printStackTrace();
 	}
 
-	jogadorJPA.salvar(jogador);
+	genericoJPA.salvar(jogador);
 	inicializar();
 	jogador = new Jogador();
 	dataString = null;
+    }
+
+    public void remover() {
+
+	genericoJPA.remover(genericoJPA.buscarJogadorPorId(Integer.parseInt(id)));
     }
 
     public Jogador getJogador() {
@@ -71,6 +78,14 @@ public class JogadorController {
 
     public void setJogadores(List<Jogador> jogadores) {
 	this.jogadores = jogadores;
+    }
+
+    public String getId() {
+	return id;
+    }
+
+    public void setId(String id) {
+	this.id = id;
     }
 
 }

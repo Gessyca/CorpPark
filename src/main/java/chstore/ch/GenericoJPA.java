@@ -7,13 +7,14 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import chstore.ch.entidade.Jogador;
+import chstore.ch.entidade.Torneio;
 
 /**
  * 
  * @author gessyca.lm
  */
 @Transactional
-public class JogadorJPA {
+public class GenericoJPA {
 
     @PersistenceContext(unitName = "ch")
     private EntityManager em;
@@ -34,12 +35,21 @@ public class JogadorJPA {
 	em.remove(em.merge(t));
     }
 
-    public List<Jogador> buscarTodos() {
+    public List<Jogador> buscarTodosJogadores() {
 	String jpql = "select j from Jogador j order by j.nome";
 	return em.createQuery(jpql, Jogador.class).getResultList();
+    }
+    
+    public List<Torneio> buscarTodosTorneios(){
+	String jpql = "select t from Torneio t";
+	return em.createQuery(jpql, Torneio.class).getResultList();
     }
 
     public Jogador buscarJogadorPorId(int id) {
 	return em.find(Jogador.class, id);
+    }
+
+    public Torneio buscarTorneioPorId(int id) {
+	return em.find(Torneio.class, id);
     }
 }

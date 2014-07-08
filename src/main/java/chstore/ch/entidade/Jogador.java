@@ -25,6 +25,8 @@ public class Jogador {
     private String email;
     private Date dataNascimento;
     private int sexo;
+    private int pontuacao;
+    private String cla;
 
     public Jogador() {
     }
@@ -67,6 +69,22 @@ public class Jogador {
 
     public void setDataNascimento(Date dataNascimento) {
 	this.dataNascimento = dataNascimento;
+    }
+
+    public int getPontuacao() {
+	return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+	this.pontuacao = pontuacao;
+    }
+
+    public String getCla() {
+	return cla;
+    }
+
+    public void setCla(String cla) {
+	this.cla = cla;
     }
 
     public int getSexo() {
