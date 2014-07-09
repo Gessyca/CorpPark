@@ -44,6 +44,11 @@ public class GenericoJPA {
 	String jpql = "select t from Torneio t";
 	return em.createQuery(jpql, Torneio.class).getResultList();
     }
+    
+    public List<Jogador> buscarJogadoresOrdemPontuacao(){
+	String jpql = "select j from Jogador j order by j.pontuacao desc";
+	return em.createQuery(jpql, Jogador.class).getResultList();
+    }
 
     public Jogador buscarJogadorPorId(int id) {
 	return em.find(Jogador.class, id);

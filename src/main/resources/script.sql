@@ -8,7 +8,8 @@ email varchar(255),
 sexo int,
 pontuacao int,
 telefone varchar(255),
-data_nascimento datetime
+data_nascimento datetime,
+cont_torneio int
 );
 
 create table torneio(

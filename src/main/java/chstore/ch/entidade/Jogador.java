@@ -30,6 +30,8 @@ public class Jogador {
     private Date dataNascimento;
     private int sexo;
     private int pontuacao;
+    @Column(name = "cont_torneio")
+    private int contTorneios;
 
     public Jogador() {
     }
@@ -80,6 +82,14 @@ public class Jogador {
 
     public void setPontuacao(int pontuacao) {
 	this.pontuacao = pontuacao;
+    }
+
+    public int getContTorneios() {
+        return contTorneios;
+    }
+
+    public void setContTorneios(int contTorneios) {
+        this.contTorneios = contTorneios;
     }
 
     public int getSexo() {

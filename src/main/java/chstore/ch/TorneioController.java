@@ -1,6 +1,8 @@
 package chstore.ch;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,34 +16,42 @@ import chstore.ch.entidade.Torneio;
 @ViewScoped
 public class TorneioController {
 
-    private Torneio torneio;
+    private Torneio novoTorneio = new Torneio();
     private List<Torneio> torneios;
-    private int id;
+    private String dataHoje = "";
+    private String id;
 
     @Inject
     private GenericoJPA genericoJPA;
 
     @PostConstruct
     public void inicializar() {
-	torneio = new Torneio();
-	torneios = new ArrayList<>();
+	dataHoje = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
+	torneios = genericoJPA.buscarTodosTorneios();
     }
 
-    public void salvar() {
-
-	genericoJPA.salvar(torneio);
+    public String salvar() {
+	try {
+	    novoTorneio.setDataTorneio(new SimpleDateFormat("dd/MM/yyyy")
+		    .parse(dataHoje));
+	} catch (ParseException e) {
+	    e.printStackTrace();
+	}
+	genericoJPA.salvar(novoTorneio);
+	
+	return "novo_torneio";
     }
 
     public void remover() {
-	genericoJPA.remover(genericoJPA.buscarTorneioPorId(id));
+	genericoJPA.remover(genericoJPA.buscarTorneioPorId(Integer.parseInt(id)));
     }
 
-    public Torneio getTorneio() {
-	return torneio;
+    public Torneio getNovoTorneio() {
+	return novoTorneio;
     }
 
-    public void setTorneio(Torneio torneio) {
-	this.torneio = torneio;
+    public void setNovoTorneio(Torneio novoTorneio) {
+	this.novoTorneio = novoTorneio;
     }
 
     public List<Torneio> getTorneios() {
@@ -52,11 +62,19 @@ public class TorneioController {
 	this.torneios = torneios;
     }
 
-    public int getId() {
+    public String getDataHoje() {
+	return dataHoje;
+    }
+
+    public void setDataHoje(String dataHoje) {
+	this.dataHoje = dataHoje;
+    }
+
+    public String getId() {
 	return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
 	this.id = id;
     }
 

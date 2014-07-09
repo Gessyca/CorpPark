@@ -1,13 +1,66 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{torneioController.inicializar}" />
+        <f:viewParam name="id" value="#{torneioController.id}" />
+    </f:metadata>
     <ui:composition template="layout.xhtml">
         <ui:define name="title">Torneios</ui:define>
         <ui:define name="content">
+            <div class="modal fade bs-example-modal-lg" id="novoTorneio" tabindex="-1" role="dialog" aria-labelledby="novoTorneio" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">CADASTRO NOVO TORNEIO</div>
+                        <div class="modal-content">
+                            <h:form>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-4">
+                                            <div class="form-group">
+                                                <h:outputLabel value="Data:" styleClass="control-label" />
+                                                <h:inputText styleClass="form-control date" value="#{torneioController.dataHoje}" p:required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            <div class="form-group">
+                                                <h:outputLabel value="Tipo Torneio:" styleClass="control-label" />
+                                                <h:selectOneMenu value="#{torneioController.novoTorneio.formato}" class="form-control" p:required="true">
+                                                    <f:selectItem itemLabel="Selecione..." itemValue="0" />
+                                                    <f:selectItem itemLabel="Individual" itemValue="1" />
+                                                    <f:selectItem itemLabel="Dupla" itemValue="2" />
+                                                    <f:selectItem itemLabel="Time" itemValue="3" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-md-4">
+                                            <div class="form-group">
+                                                <h:outputLabel value="Quantidade de jogadores:" styleClass="control-label" />
+                                                <h:inputText class="form-control" value="#{torneioController.novoTorneio.qtdJogadores}" p:required="true" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button jsf:id="btSalvar" jsf:action="#{torneioController.salvar()}" class="btn btn-primary" type="submit">
+                                        <span class="glyphicon glyphicon-arrow-right" />
+                                    </button>
+                                    <button value="Voltar" class="btn btn-default" data-dismiss="modal">
+                                        <span class="glyphicon glyphicon-off" />
+                                    </button>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <a href="novo_torneio.xhtml" class="btn btn-primary"> <span class="glyphicon glyphicon-plus-sign" /> Novo Torneio</a>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#novoTorneio"> <span class="glyphicon glyphicon-plus-sign" /> Novo Torneio
+                    </a>
                 </div>
                 <h:form>
                     <h:dataTable id="TorneiosTables" value="#{torneioController.torneios}" var="t" styleClass="table table-striped">
@@ -21,9 +74,9 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Tipo torneio" />
+                                <h:outputText value="Tipo Torneio" />
                             </f:facet>
-                            <h:outputText value="#{t.formato}" />
+                            <h:outputText value="#{t.tipoFormatado}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -45,12 +98,12 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Cla" />
+                                <h:outputText value="Clan" />
                             </f:facet>
                             <h:outputText value="#{t.cla}" />
                         </h:column>
                         <h:column>
-                            <button jsf:id="btRemover" jsf:action="#{torneioController.remover}" class="btn btn-danger" type="submit">
+                            <button jsf:id="btRemover" jsf:action="#{torneioController.remover()}" class="btn btn-danger" type="submit">
                                 <span class="glyphicon glyphicon-trash" />
                                 <f:param name="id" value="#{t.id}" />
                             </button>

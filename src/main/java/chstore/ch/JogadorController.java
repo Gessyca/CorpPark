@@ -38,7 +38,6 @@ public class JogadorController {
 	    jogador = genericoJPA.buscarJogadorPorId(Integer.parseInt(id));
 	}
 	
-	System.out.println("ID: " + id);
     }
 
     public void salvar() {

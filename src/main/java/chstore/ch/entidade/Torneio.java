@@ -116,4 +116,19 @@ public class Torneio {
 	this.jogador = jogador;
     }
 
+    public String getTipoFormatado() {
+	String formatoAux = "";
+	if (formato == 1) {
+	    formatoAux = "INDIVIDUAL";
+	}
+	if (formato == 2) {
+	    formatoAux = "DUPLA";
+	}
+	if (formato == 3) {
+	    formatoAux = "TIME";
+
+	}
+	return formatoAux;
+    }
+
 }
