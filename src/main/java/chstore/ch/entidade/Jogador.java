@@ -32,7 +32,6 @@ public class Jogador {
     private Date dataNascimento;
     private int sexo;
     private int pontuacao;
-    @Column(name = "cont_torneio")
     
     @ManyToOne
     @JoinColumn(name = "torneio_id")

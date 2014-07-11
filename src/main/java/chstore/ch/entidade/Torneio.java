@@ -28,7 +28,6 @@ public class Torneio {
     private String nome;
     private int formato;
     private String local;
-    @Column(name = "qtd_jogadores")
     private String cla;
 
     @OneToMany(mappedBy = "torneio", fetch = FetchType.EAGER)
