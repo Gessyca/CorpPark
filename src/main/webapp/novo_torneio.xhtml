@@ -11,7 +11,10 @@
                     <div class="well">
                         <div class="row">
                             <div class="col-md-4">
-                                Data : <b>#{listarJogadoresTorneioController.torneio.dataTorneio}</b>
+                                Data : <b> <h:outputText value="#{listarJogadoresTorneioController.torneio.dataTorneio}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </b>
                             </div>
                             <div class="col-md-4">
                                 Tipo Torneio : <b>#{listarJogadoresTorneioController.torneio.tipoFormatado}</b>
@@ -20,6 +23,8 @@
                                 Local : <b>#{listarJogadoresTorneioController.torneio.local}</b>
                             </div>
                         </div>
+                    </div>
+                    <div class="well">
                     </div>
                     <div class="modal-body">
                         <h:dataTable value="#{listarJogadoresTorneioController.jogadores}" var="j" styleClass="table table-striped">
