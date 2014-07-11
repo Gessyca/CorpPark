@@ -114,7 +114,10 @@
                                 <span class="glyphicon glyphicon-trash" />
                                 <f:param name="id" value="#{j.id}" />
                             </button>
-                            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#novoJogador"><f:param name="id" value="#{j.id}" /> <span class="glyphicon glyphicon-pencil" /> </a>
+                            <h:commandLink href="#" class="btn btn-info" data-toggle="modal" data-target="#novoJogador">
+                                <f:param name="id" value="#{j.id}" />
+                                <span class="glyphicon glyphicon-pencil" />
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:form>

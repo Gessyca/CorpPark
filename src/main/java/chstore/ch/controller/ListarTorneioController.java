@@ -1,4 +1,4 @@
-package chstore.ch;
+package chstore.ch.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,13 +10,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
+import chstore.ch.GenericoJPA;
 import chstore.ch.entidade.Torneio;
 
 @ManagedBean
 @ViewScoped
-public class TorneioController {
+public class ListarTorneioController {
 
-    private Torneio novoTorneio = new Torneio();
+    private Torneio novoTorneio;
     private List<Torneio> torneios;
     private String dataHoje = "";
     private String id;
@@ -26,6 +27,7 @@ public class TorneioController {
 
     @PostConstruct
     public void inicializar() {
+	novoTorneio = new Torneio();
 	dataHoje = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
 	torneios = genericoJPA.buscarTodosTorneios();
     }
@@ -38,12 +40,13 @@ public class TorneioController {
 	    e.printStackTrace();
 	}
 	genericoJPA.salvar(novoTorneio);
-	
+
 	return "novo_torneio";
     }
 
     public void remover() {
-	genericoJPA.remover(genericoJPA.buscarTorneioPorId(Integer.parseInt(id)));
+	genericoJPA
+		.remover(genericoJPA.buscarTorneioPorId(Integer.parseInt(id)));
     }
 
     public Torneio getNovoTorneio() {

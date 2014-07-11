@@ -1,4 +1,4 @@
-package chstore.ch;
+package chstore.ch.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
+import chstore.ch.GenericoJPA;
 import chstore.ch.entidade.Jogador;
 import chstore.ch.entidade.Torneio;
 

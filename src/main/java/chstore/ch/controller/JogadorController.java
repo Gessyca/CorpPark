@@ -1,4 +1,4 @@
-package chstore.ch;
+package chstore.ch.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
+import chstore.ch.GenericoJPA;
 import chstore.ch.entidade.Jogador;
 
 /**

@@ -103,10 +103,10 @@ public class Jogador {
     public String getSexoFormatado() {
 	String sexoAux = "";
 	if (sexo == 1) {
-	    sexoAux = "HOMEM";
+	    sexoAux = "Homem";
 
 	} else {
-	    sexoAux = "MULHER";
+	    sexoAux = "Mulher";
 
 	}
 	return sexoAux;

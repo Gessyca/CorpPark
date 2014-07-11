@@ -5,9 +5,39 @@
     <ui:composition template="layout.xhtml">
         <ui:define name="title">Cadastro novo torneio</ui:define>
         <ui:define name="content">
-        <h:form>
-        #{torneioController.novoTorneio.id}
-        </h:form>
+            <h:form>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">DADOS DO TORNEIO</div>
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Data : <b>#{listarJogadoresTorneioController.torneio.dataTorneio}</b>
+                            </div>
+                            <div class="col-md-4">
+                                Tipo Torneio : <b>#{listarJogadoresTorneioController.torneio.tipoFormatado}</b>
+                            </div>
+                            <div class="col-md-4">
+                                Local : <b>#{listarJogadoresTorneioController.torneio.local}</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <h:dataTable value="#{listarJogadoresTorneioController.jogadores}" var="j" styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel value="Nome" styleClass="control-label" />
+                                </f:facet>
+                                #{j.nome}
+                            </h:column>
+                            <h:column>
+                                <button jsf:id="btSalvar" jsf:action="#{listarJogadoresTorneioController.adicionarJogadorNoTorneio}" class="btn btn-info" type="submit">
+                                    <span class="glyphicon glyphicon-thumbs-up" />
+                                </button>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

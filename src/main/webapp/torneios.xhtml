@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
     <f:metadata>
-        <f:event type="preRenderView" listener="#{torneioController.inicializar}" />
-        <f:viewParam name="id" value="#{torneioController.id}" />
+        <f:event type="preRenderView" listener="#{listarTorneioController.inicializar}" />
+        <f:viewParam name="id" value="#{listarTorneioController.id}" />
     </f:metadata>
     <ui:composition template="layout.xhtml">
         <ui:define name="title">Torneios</ui:define>
@@ -20,14 +20,13 @@
                                         <div class="col-xs-6 col-md-4">
                                             <div class="form-group">
                                                 <h:outputLabel value="Data:" styleClass="control-label" />
-                                                <h:inputText styleClass="form-control date" value="#{torneioController.dataHoje}" p:required="true" />
+                                                <h:inputText styleClass="form-control date" value="#{listarTorneioController.dataHoje}" p:required="true" />
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-md-4">
                                             <div class="form-group">
                                                 <h:outputLabel value="Tipo Torneio:" styleClass="control-label" />
-                                                <h:selectOneMenu value="#{torneioController.novoTorneio.formato}" class="form-control" p:required="true">
-                                                    <f:selectItem itemLabel="Selecione..." itemValue="0" />
+                                                <h:selectOneMenu value="#{listarTorneioController.novoTorneio.formato}" class="form-control" p:required="true">
                                                     <f:selectItem itemLabel="Individual" itemValue="1" />
                                                     <f:selectItem itemLabel="Dupla" itemValue="2" />
                                                     <f:selectItem itemLabel="Time" itemValue="3" />
@@ -37,15 +36,15 @@
 
                                         <div class="col-xs-6 col-md-4">
                                             <div class="form-group">
-                                                <h:outputLabel value="Quantidade de jogadores:" styleClass="control-label" />
-                                                <h:inputText class="form-control" value="#{torneioController.novoTorneio.qtdJogadores}" p:required="true" />
+                                                <h:outputLabel value="Local:" styleClass="control-label" />
+                                                <h:inputText class="form-control" value="#{listarTorneioController.novoTorneio.local}" p:required="true" />
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button jsf:id="btSalvar" jsf:action="#{torneioController.salvar()}" class="btn btn-primary" type="submit">
+                                    <button jsf:id="btSalvar" jsf:action="#{listarTorneioController.salvar()}" class="btn btn-primary" type="submit">
                                         <span class="glyphicon glyphicon-arrow-right" />
                                     </button>
                                     <button value="Voltar" class="btn btn-default" data-dismiss="modal">
@@ -63,7 +62,7 @@
                     </a>
                 </div>
                 <h:form>
-                    <h:dataTable id="TorneiosTables" value="#{torneioController.torneios}" var="t" styleClass="table table-striped">
+                    <h:dataTable id="TorneiosTables" value="#{listarTorneioController.torneios}" var="t" styleClass="table table-striped">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Data" />
@@ -82,7 +81,7 @@
                             <f:facet name="header">
                                 <h:outputText value="Qtd Jogadores" />
                             </f:facet>
-                            <h:outputText value="#{t.qtdJogadores}" />
+                            <h:outputText value="#{t.qtdJogadores}" /> jogadores
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -103,7 +102,7 @@
                             <h:outputText value="#{t.cla}" />
                         </h:column>
                         <h:column>
-                            <button jsf:id="btRemover" jsf:action="#{torneioController.remover()}" class="btn btn-danger" type="submit">
+                            <button jsf:id="btRemover" jsf:action="#{listarTorneioController.remover()}" class="btn btn-danger" type="submit">
                                 <span class="glyphicon glyphicon-trash" />
                                 <f:param name="id" value="#{t.id}" />
                             </button>

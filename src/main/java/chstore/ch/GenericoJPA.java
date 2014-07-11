@@ -39,15 +39,27 @@ public class GenericoJPA {
 	String jpql = "select j from Jogador j order by j.nome";
 	return em.createQuery(jpql, Jogador.class).getResultList();
     }
-    
-    public List<Torneio> buscarTodosTorneios(){
+
+    public List<Torneio> buscarTodosTorneios() {
 	String jpql = "select t from Torneio t";
 	return em.createQuery(jpql, Torneio.class).getResultList();
     }
-    
-    public List<Jogador> buscarJogadoresOrdemPontuacao(){
+
+    public List<Jogador> buscarJogadoresOrdemPontuacao() {
 	String jpql = "select j from Jogador j order by j.pontuacao desc";
 	return em.createQuery(jpql, Jogador.class).getResultList();
+    }
+
+    public Torneio ultimoTorneioSalvo() {
+	String jpql = "select t from Torneio t order by t.id desc";
+	List<Torneio> list = em.createQuery(jpql, Torneio.class)
+		.getResultList();
+
+	if (!list.isEmpty()) {
+	    return list.get(0);
+	} else {
+	    return null;
+	}
     }
 
     public Jogador buscarJogadorPorId(int id) {

@@ -119,13 +119,13 @@ public class Torneio {
     public String getTipoFormatado() {
 	String formatoAux = "";
 	if (formato == 1) {
-	    formatoAux = "INDIVIDUAL";
+	    formatoAux = "Individual";
 	}
 	if (formato == 2) {
-	    formatoAux = "DUPLA";
+	    formatoAux = "Dupla";
 	}
 	if (formato == 3) {
-	    formatoAux = "TIME";
+	    formatoAux = "Time";
 
 	}
 	return formatoAux;
