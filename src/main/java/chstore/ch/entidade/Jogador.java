@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -31,7 +33,10 @@ public class Jogador {
     private int sexo;
     private int pontuacao;
     @Column(name = "cont_torneio")
-    private int contTorneios;
+    
+    @ManyToOne
+    @JoinColumn(name = "torneio_id")
+    private Torneio torneio;
 
     public Jogador() {
     }
@@ -84,14 +89,6 @@ public class Jogador {
 	this.pontuacao = pontuacao;
     }
 
-    public int getContTorneios() {
-        return contTorneios;
-    }
-
-    public void setContTorneios(int contTorneios) {
-        this.contTorneios = contTorneios;
-    }
-
     public int getSexo() {
 	return sexo;
     }
@@ -110,6 +107,14 @@ public class Jogador {
 
 	}
 	return sexoAux;
+    }
+
+    public Torneio getTorneio() {
+        return torneio;
+    }
+
+    public void setTorneio(Torneio torneio) {
+        this.torneio = torneio;
     }
 
 }

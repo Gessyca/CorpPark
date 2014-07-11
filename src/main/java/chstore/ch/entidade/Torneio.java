@@ -5,13 +5,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "torneio")
@@ -30,15 +29,10 @@ public class Torneio {
     private int formato;
     private String local;
     @Column(name = "qtd_jogadores")
-    private int qtdJogadores;
     private String cla;
 
-    @ManyToOne
-    @JoinColumn(name = "id_jogador_vencedor")
-    private Jogador jogador;
-
-    @Transient
-    private List<Jogador> jogadores;
+    @OneToMany(mappedBy = "torneio", fetch = FetchType.EAGER)
+    private List<Jogador> vencedores;
 
     public Torneio() {
 
@@ -76,28 +70,12 @@ public class Torneio {
 	this.formato = formato;
     }
 
-    public List<Jogador> getJogadores() {
-	return jogadores;
-    }
-
-    public void setJogadores(List<Jogador> jogadores) {
-	this.jogadores = jogadores;
-    }
-
     public String getLocal() {
 	return local;
     }
 
     public void setLocal(String local) {
 	this.local = local;
-    }
-
-    public int getQtdJogadores() {
-	return qtdJogadores;
-    }
-
-    public void setQtdJogadores(int qtdJogadores) {
-	this.qtdJogadores = qtdJogadores;
     }
 
     public String getCla() {
@@ -107,13 +85,14 @@ public class Torneio {
     public void setCla(String cla) {
 	this.cla = cla;
     }
+    
 
-    public Jogador getJogador() {
-	return jogador;
+    public List<Jogador> getVencedores() {
+        return vencedores;
     }
 
-    public void setJogador(Jogador jogador) {
-	this.jogador = jogador;
+    public void setVencedores(List<Jogador> vencedores) {
+        this.vencedores = vencedores;
     }
 
     public String getTipoFormatado() {

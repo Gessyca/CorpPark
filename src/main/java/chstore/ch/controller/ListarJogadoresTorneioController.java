@@ -25,7 +25,6 @@ public class ListarJogadoresTorneioController {
     public void inicializar() {
 	jogadores = genericoJPA.buscarTodosJogadores();
 	torneio = genericoJPA.ultimoTorneioSalvo();
-	System.out.println(torneio.getLocal());
     }
 
     public void adicionarJogadorNoTorneio() {
