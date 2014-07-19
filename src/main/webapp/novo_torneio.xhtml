@@ -1,49 +1,82 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
-    <ui:composition template="layout.xhtml">
-        <ui:define name="title">Cadastro novo torneio</ui:define>
-        <ui:define name="content">
-            <h:form>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">DADOS DO TORNEIO</div>
-                    <div class="well">
-                        <div class="row">
-                            <div class="col-md-4">
-                                Data : <b> <h:outputText value="#{listarJogadoresTorneioController.torneio.dataTorneio}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputText>
-                                </b>
-                            </div>
-                            <div class="col-md-4">
-                                Tipo Torneio : <b>#{listarJogadoresTorneioController.torneio.tipoFormatado}</b>
-                            </div>
-                            <div class="col-md-4">
-                                Local : <b>#{listarJogadoresTorneioController.torneio.local}</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="well">
-                    </div>
-                    <div class="modal-body">
-                        <h:dataTable value="#{listarJogadoresTorneioController.jogadores}" var="j" styleClass="table table-striped">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputLabel value="Nome" styleClass="control-label" />
-                                </f:facet>
-                                #{j.nome}
-                            </h:column>
-                            <h:column>
-                                <button jsf:id="btSalvar" jsf:action="#{listarJogadoresTorneioController.adicionarJogadorNoTorneio}" class="btn btn-info" type="submit">
-                                    <span class="glyphicon glyphicon-thumbs-up" />
-                                </button>
-                            </h:column>
-                        </h:dataTable>
-                    </div>
-                </div>
-            </h:form>
-        </ui:define>
-    </ui:composition>
+	<ui:composition template="layout.xhtml">
+		<ui:define name="title">Cadastro novo torneio</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<div class="panel panel-primary">
+					<div class="panel-heading">DADOS DO TORNEIO</div>
+					<div class="well">
+						<div class="row">
+							<div class="col-md-4">
+								Data : <b> <h:outputText
+										value="#{listarJogadoresTorneioController.torneio.dataTorneio}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+								</b>
+							</div>
+							<div class="col-md-4">
+								Tipo Torneio : <b>#{listarJogadoresTorneioController.torneio.tipoFormatado}</b>
+							</div>
+							<div class="col-md-4">
+								Local : <b>#{listarJogadoresTorneioController.torneio.local}</b>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">Vencedor(es)</div>
+						<div class="panel-body">
+							<div class="col-md-4">
+								<div class="form-group">
+									<h:outputLabel value="Nome:" styleClass="control-label" />
+									<h:selectOneMenu
+										value="#{listarJogadoresTorneioController.vencedor1}"
+										class="form-control">
+										<f:selectItem itemLabel="Selecione..." itemValue="0" />
+										<f:selectItems
+											value="#{listarJogadoresTorneioController.jogadores}" var="j"
+											itemLabel="#{j.nome}" itemValue="#{j}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<h:outputLabel value="Nome:" styleClass="control-label" />
+									<h:selectOneMenu
+										value="#{listarJogadoresTorneioController.vencedor2}"
+										class="form-control" disabled="${(listarJogadoresTorneioController.torneio.formato == 1) ? 'true' : 'false'}">										
+										<f:selectItem itemLabel="Selecione..." itemValue="0" />
+										<f:selectItems
+											value="#{listarJogadoresTorneioController.jogadores}" var="j"
+											itemLabel="#{j.nome}" itemValue="#{j}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<h:outputLabel value="Nome:" styleClass="control-label" />
+									<h:selectOneMenu
+										value="#{listarJogadoresTorneioController.vencedor3}"
+										class="form-control" disabled="${(listarJogadoresTorneioController.torneio.formato == 3) ? 'false' : 'true'}">
+										<f:selectItem itemLabel="Selecione..." itemValue="0" />
+										<f:selectItems
+											value="#{listarJogadoresTorneioController.jogadores}" var="j"
+											itemLabel="#{j.nome}" itemValue="#{j}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

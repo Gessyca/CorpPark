@@ -11,10 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- * 
- * @author gessyca.lm
- */
 @Entity
 @Table(name = "jogador")
 public class Jogador {

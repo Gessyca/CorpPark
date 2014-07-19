@@ -6,6 +6,7 @@
         <ui:define name="title">Ranking</ui:define>
         <ui:define name="content">
             <div class="panel panel-primary">
+            <div class="panel-heading">RANKING</div>
                 <h:form>
                     <h:dataTable id="rankingTables" value="#{rankingController.jogadores}" var="r" styleClass="table table-striped">
                         <h:column>
@@ -30,7 +31,6 @@
                             <f:facet name="header">
                                 <h:outputText value="Assiduidade" />
                             </f:facet>
-                            <h:outputText value="#{r.contTorneios} de #{rankingController.qtdTotalTorneios.size()} (#{(r.contTorneios / rankingController.qtdTotalTorneios.size()) * 100}%)" />
                         </h:column>
                     </h:dataTable>
                 </h:form>

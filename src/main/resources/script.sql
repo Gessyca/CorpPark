@@ -14,7 +14,6 @@ torneio_id int
 
 create table torneio(
 id int primary key not null auto_increment,
-nome varchar(255),
 data_torneio datetime,
 local varchar(255),
 formato int,

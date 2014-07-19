@@ -16,97 +16,87 @@ import javax.persistence.Table;
 @Table(name = "torneio")
 public class Torneio {
 
-    private final static int FORMATO_INDIVIDUAL = 1;
-    private final static int FORMATO_DUPLA = 2;
-    private final static int FORMATO_TIME = 3;
+	private final static int FORMATO_INDIVIDUAL = 1;
+	private final static int FORMATO_DUPLA = 2;
+	private final static int FORMATO_TIME = 3;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "data_torneio")
-    private Date dataTorneio;
-    private String nome;
-    private int formato;
-    private String local;
-    private String cla;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(name = "data_torneio")
+	private Date dataTorneio;
+	private int formato;
+	private String local;
+	private String cla;
 
-    @OneToMany(mappedBy = "torneio", fetch = FetchType.EAGER)
-    private List<Jogador> vencedores;
+	@OneToMany(mappedBy = "torneio", fetch = FetchType.EAGER)
+	private List<Jogador> jogadores;
 
-    public Torneio() {
-
-    }
-
-    public int getId() {
-	return id;
-    }
-
-    public void setId(int id) {
-	this.id = id;
-    }
-
-    public Date getDataTorneio() {
-	return dataTorneio;
-    }
-
-    public void setDataTorneio(Date dataTorneio) {
-	this.dataTorneio = dataTorneio;
-    }
-
-    public String getNome() {
-	return nome;
-    }
-
-    public void setNome(String nome) {
-	this.nome = nome;
-    }
-
-    public int getFormato() {
-	return formato;
-    }
-
-    public void setFormato(int formato) {
-	this.formato = formato;
-    }
-
-    public String getLocal() {
-	return local;
-    }
-
-    public void setLocal(String local) {
-	this.local = local;
-    }
-
-    public String getCla() {
-	return cla;
-    }
-
-    public void setCla(String cla) {
-	this.cla = cla;
-    }
-    
-
-    public List<Jogador> getVencedores() {
-        return vencedores;
-    }
-
-    public void setVencedores(List<Jogador> vencedores) {
-        this.vencedores = vencedores;
-    }
-
-    public String getTipoFormatado() {
-	String formatoAux = "";
-	if (formato == 1) {
-	    formatoAux = "Individual";
-	}
-	if (formato == 2) {
-	    formatoAux = "Dupla";
-	}
-	if (formato == 3) {
-	    formatoAux = "Time";
+	public Torneio() {
 
 	}
-	return formatoAux;
-    }
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getDataTorneio() {
+		return dataTorneio;
+	}
+
+	public void setDataTorneio(Date dataTorneio) {
+		this.dataTorneio = dataTorneio;
+	}
+
+	public int getFormato() {
+		return formato;
+	}
+
+	public void setFormato(int formato) {
+		this.formato = formato;
+	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
+	}
+
+	public String getCla() {
+		return cla;
+	}
+
+	public void setCla(String cla) {
+		this.cla = cla;
+	}
+
+	public List<Jogador> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(List<Jogador> jogadores) {
+		this.jogadores = jogadores;
+	}
+
+	public String getTipoFormatado() {
+		String formatoAux = "";
+		if (formato == 1) {
+			formatoAux = "Individual";
+		}
+		if (formato == 2) {
+			formatoAux = "Dupla";
+		}
+		if (formato == 3) {
+			formatoAux = "Time";
+
+		}
+		return formatoAux;
+	}
 
 }

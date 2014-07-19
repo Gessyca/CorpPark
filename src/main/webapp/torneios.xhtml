@@ -17,13 +17,19 @@
                             <h:form>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-xs-6 col-md-4">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <h:outputLabel value="Local:" styleClass="control-label" />
+                                                <h:inputText class="form-control" value="#{listarTorneioController.novoTorneio.local}" p:required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <h:outputLabel value="Data:" styleClass="control-label" />
                                                 <h:inputText styleClass="form-control date" value="#{listarTorneioController.dataHoje}" p:required="true" />
                                             </div>
                                         </div>
-                                        <div class="col-xs-6 col-md-4">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <h:outputLabel value="Tipo Torneio:" styleClass="control-label" />
                                                 <h:selectOneMenu value="#{listarTorneioController.novoTorneio.formato}" class="form-control" p:required="true">
@@ -33,14 +39,8 @@
                                                 </h:selectOneMenu>
                                             </div>
                                         </div>
-
-                                        <div class="col-xs-6 col-md-4">
-                                            <div class="form-group">
-                                                <h:outputLabel value="Local:" styleClass="control-label" />
-                                                <h:inputText class="form-control" value="#{listarTorneioController.novoTorneio.local}" p:required="true" />
-                                            </div>
-                                        </div>
-
+                                    </div>
+                                    <div class="row">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -81,19 +81,13 @@
                             <f:facet name="header">
                                 <h:outputText value="Qtd Jogadores" />
                             </f:facet>
-                            <h:outputText value="#{t.qtdJogadores}" /> jogadores
+                            <h:outputText value="#{t.jogadores.size()}" /> jogadores
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Local" />
                             </f:facet>
                             <h:outputText value="#{t.local}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Vencedor" />
-                            </f:facet>
-                            <h:outputText value="#{t.jogador.nome}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
