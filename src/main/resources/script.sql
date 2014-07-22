@@ -17,5 +17,7 @@ id int primary key not null auto_increment,
 data_torneio datetime,
 local varchar(255),
 formato int,
-cla varchar(255)
+clan varchar(255)
 );
+
+create table jogador_torneio (jogador_id int, torneio_id int);

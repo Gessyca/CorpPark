@@ -1,5 +1,6 @@
 package chstore.ch.entidade;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,10 +30,11 @@ public class Torneio {
 	private Date dataTorneio;
 	private int formato;
 	private String local;
-	private String cla;
+	private String clan;
 
-	@OneToMany(mappedBy = "torneio", fetch = FetchType.EAGER)
-	private List<Jogador> jogadores;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "jogador_torneio", joinColumns = { @JoinColumn(name = "torneio_id") }, inverseJoinColumns = { @JoinColumn(name = "jogador_id") })
+	private List<Jogador> jogadores = new ArrayList<>();
 
 	public Torneio() {
 
@@ -68,12 +72,12 @@ public class Torneio {
 		this.local = local;
 	}
 
-	public String getCla() {
-		return cla;
+	public String getClan() {
+		return clan;
 	}
 
-	public void setCla(String cla) {
-		this.cla = cla;
+	public void setClan(String clan) {
+		this.clan = clan;
 	}
 
 	public List<Jogador> getJogadores() {

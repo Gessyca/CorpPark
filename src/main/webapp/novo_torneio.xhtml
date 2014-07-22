@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading">Vencedor(es)</div>
+						<div class="panel-heading">VENCEDOR(ES)</div>
 						<div class="panel-body">
 							<div class="col-md-4">
 								<div class="form-group">
@@ -42,7 +42,7 @@
 										<f:selectItem itemLabel="Selecione..." itemValue="0" />
 										<f:selectItems
 											value="#{listarJogadoresTorneioController.jogadores}" var="j"
-											itemLabel="#{j.nome}" itemValue="#{j}" />
+											itemLabel="#{j.nome}" itemValue="#{j.nome}" />
 									</h:selectOneMenu>
 								</div>
 							</div>
@@ -51,11 +51,12 @@
 									<h:outputLabel value="Nome:" styleClass="control-label" />
 									<h:selectOneMenu
 										value="#{listarJogadoresTorneioController.vencedor2}"
-										class="form-control" disabled="${(listarJogadoresTorneioController.torneio.formato == 1) ? 'true' : 'false'}">										
+										class="form-control"
+										disabled="${(listarJogadoresTorneioController.torneio.formato == 1) ? 'true' : 'false'}">
 										<f:selectItem itemLabel="Selecione..." itemValue="0" />
 										<f:selectItems
 											value="#{listarJogadoresTorneioController.jogadores}" var="j"
-											itemLabel="#{j.nome}" itemValue="#{j}" />
+											itemLabel="#{j.nome}" itemValue="#{j.nome}" />
 									</h:selectOneMenu>
 								</div>
 							</div>
@@ -64,13 +65,32 @@
 									<h:outputLabel value="Nome:" styleClass="control-label" />
 									<h:selectOneMenu
 										value="#{listarJogadoresTorneioController.vencedor3}"
-										class="form-control" disabled="${(listarJogadoresTorneioController.torneio.formato == 3) ? 'false' : 'true'}">
+										class="form-control"
+										disabled="${(listarJogadoresTorneioController.torneio.formato == 3) ? 'false' : 'true'}">
 										<f:selectItem itemLabel="Selecione..." itemValue="0" />
 										<f:selectItems
 											value="#{listarJogadoresTorneioController.jogadores}" var="j"
-											itemLabel="#{j.nome}" itemValue="#{j}" />
+											itemLabel="#{j.nome}" itemValue="#{j.nome}" />
 									</h:selectOneMenu>
 								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">CLAN VENCEDOR</div>
+						<div class="panel-body">
+							<div class="col-md-4">
+								<div class="form-group">
+									<h:outputLabel value="Clan:" styleClass="control-label" />
+									<h:inputText
+										value="#{listarJogadoresTorneioController.torneio.clan}"
+										class="form-control" />
+								</div>
+								<button jsf:id="btAtualizar"
+									jsf:action="#{listarJogadoresTorneioController.atualizar}"
+									class="btn btn-primary" type="submit">
+									<span class="glyphicon glyphicon-floppy-disk" />
+								</button>
 							</div>
 						</div>
 					</div>

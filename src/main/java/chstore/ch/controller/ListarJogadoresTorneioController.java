@@ -17,18 +17,18 @@ public class ListarJogadoresTorneioController {
 
 	private List<Jogador> jogadores;
 	private Torneio torneio;
-	private Jogador vencedor1;
-	private Jogador vencedor2;
-	private Jogador vencedor3;
+	private String vencedor1;
+	private String vencedor2;
+	private String vencedor3;
 
 	@Inject
 	private GenericoJPA genericoJPA;
 
 	@PostConstruct
 	public void inicializar() {
-		vencedor1 = new Jogador();
-		vencedor2 = new Jogador();
-		vencedor3 = new Jogador();
+		vencedor1 = "";
+		vencedor2 = "";
+		vencedor3 = "";
 		jogadores = genericoJPA.buscarTodosJogadores();
 		torneio = genericoJPA.ultimoTorneioSalvo();
 	}
@@ -38,8 +38,39 @@ public class ListarJogadoresTorneioController {
 		torneio.getJogadores().add(novoJogador);
 	}
 
-	public void finalizarTorneio() {
+	public String atualizar() {
+
+		if (vencedor1.length() > 0) {
+			adicionarVencedor(vencedor1);
+		}
+		if (vencedor2.length() > 0) {
+			adicionarVencedor(vencedor2);
+		}
+		if (vencedor3.length() > 0) {
+			adicionarVencedor(vencedor3);
+		}
+
 		genericoJPA.atualizar(torneio);
+		return "torneios";
+	}
+
+	public Jogador buscarJogadorPorNome(String nome) {
+		return genericoJPA.buscarJogadorPorNome(nome);
+	}
+
+	public void adicionarVencedor(String vencedor) {
+		Jogador novoJogador = buscarJogadorPorNome(vencedor);
+		if (novoJogador != null) {
+			atualizarPontuacaoJogador(novoJogador, 8);
+			novoJogador.setPontuacao(8);
+			torneio.getJogadores().add(novoJogador);
+		}
+	}
+
+	public void atualizarPontuacaoJogador(Jogador jogador, int pont) {
+		int pontuacao = jogador.getPontuacao() + pont;
+		jogador.setPontuacao(pontuacao);
+		genericoJPA.atualizar(jogador);
 	}
 
 	public List<Jogador> getJogadores() {
@@ -58,27 +89,27 @@ public class ListarJogadoresTorneioController {
 		this.torneio = torneio;
 	}
 
-	public Jogador getVencedor1() {
+	public String getVencedor1() {
 		return vencedor1;
 	}
 
-	public void setVencedor1(Jogador vencedor1) {
+	public void setVencedor1(String vencedor1) {
 		this.vencedor1 = vencedor1;
 	}
 
-	public Jogador getVencedor2() {
+	public String getVencedor2() {
 		return vencedor2;
 	}
 
-	public void setVencedor2(Jogador vencedor2) {
+	public void setVencedor2(String vencedor2) {
 		this.vencedor2 = vencedor2;
 	}
 
-	public Jogador getVencedor3() {
+	public String getVencedor3() {
 		return vencedor3;
 	}
 
-	public void setVencedor3(Jogador vencedor3) {
+	public void setVencedor3(String vencedor3) {
 		this.vencedor3 = vencedor3;
 	}
 
