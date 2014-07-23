@@ -1,4 +1,9 @@
-chstore/ch/JogadorController.class
+chstore/ch/controller/ListarJogadoresTorneioController.class
+chstore/ch/entidade/Torneio.class
+chstore/ch/controller/RankingController.class
 chstore/ch/PersistenceManager.class
-chstore/ch/JogadorJPA.class
-chstore/ch/Jogador.class
+chstore/ch/controller/ListarTorneioController.class
+chstore/ch/entidade/Usuario.class
+chstore/ch/entidade/Jogador.class
+chstore/ch/GenericoJPA.class
+chstore/ch/controller/JogadorController.class
