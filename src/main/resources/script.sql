@@ -9,7 +9,6 @@ sexo int,
 pontuacao int,
 telefone varchar(255),
 data_nascimento datetime,
-torneio_id int
 );
 
 create table torneio(
@@ -21,3 +20,9 @@ clan varchar(255)
 );
 
 create table jogador_torneio (jogador_id int, torneio_id int);
+
+create table usuario (
+id int primary key not null auto_increment,
+nome varchar(255),
+senha varchar(255)
+);

@@ -1,128 +1,150 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://xmlns.jcp.org/jsf/passthrough" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
-    <f:metadata>
-        <f:event type="preRenderView" listener="#{jogadorController.inicializar}" />
-        <f:viewParam name="id" value="#{jogadorController.id}" />
-    </f:metadata>
-    <ui:composition template="layout.xhtml">
-        <ui:define name="title">
-        </ui:define>
-        <ui:define name="content">
-            <div class="modal fade" id="novoJogador" tabindex="-1" role="dialog" aria-labelledby="novoJogador" aria-hidden="true">
-                <div class="modal-dialog">
-                    <h:form>
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">CADASTRO NOVO JOGADOR</div>
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h:outputLabel value="Nome:" styleClass="control-label" />
-                                                <h:inputText class="form-control" value="#{jogadorController.jogador.nome}" p:required="true" />
-                                            </div>
-                                        </div>
+	<ui:composition template="layout.xhtml">
+		<ui:define name="title">
+		</ui:define>
+		<ui:define name="content">
+			<div class="modal fade" id="novoJogador" tabindex="-1" role="dialog"
+				aria-labelledby="novoJogador" aria-hidden="true">
+				<div class="modal-dialog">
+					<h:form>
+						<div class="panel panel-primary">
+							<div class="panel-heading">CADASTRO NOVO JOGADOR</div>
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Nome:" styleClass="control-label" />
+												<h:inputText class="form-control"
+													value="#{jogadorController.jogador.nome}" p:required="true" />
+											</div>
+										</div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h:outputLabel value="Sexo:" styleClass="control-label" />
-                                                <h:selectOneMenu value="#{jogadorController.jogador.sexo}" class="form-control">
-                                                    <f:selectItem itemLabel="Homem" itemValue="1" />
-                                                    <f:selectItem itemLabel="Mulher" itemValue="2" />
-                                                </h:selectOneMenu>
-                                            </div>
-                                        </div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Sexo:" styleClass="control-label" />
+												<h:selectOneMenu value="#{jogadorController.jogador.sexo}"
+													class="form-control">
+													<f:selectItem itemLabel="Homem" itemValue="1" />
+													<f:selectItem itemLabel="Mulher" itemValue="2" />
+												</h:selectOneMenu>
+											</div>
+										</div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h:outputLabel value="Data de Nacimento:" styleClass="control-label" />
-                                                <h:inputText styleClass="form-control date" value="#{jogadorController.dataString}" p:required="true" />
-                                            </div>
-                                        </div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Data de Nacimento:"
+													styleClass="control-label" />
+												<h:inputText styleClass="form-control date"
+													value="#{jogadorController.dataString}" p:required="true" />
+											</div>
+										</div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h:outputLabel value="Email:" styleClass="control-label" />
-                                                <h:inputText class="form-control" p:type="email" value="#{jogadorController.jogador.email}" p:required="true" />
-                                            </div>
-                                        </div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Email:" styleClass="control-label" />
+												<h:inputText class="form-control" p:type="email"
+													value="#{jogadorController.jogador.email}"
+													p:required="true" />
+											</div>
+										</div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h:outputLabel value="Telefone:" styleClass="control-label" />
-                                                <h:inputText id="fone" styleClass="form-control phone" value="#{jogadorController.jogador.telefone}" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button jsf:id="btSalvar" jsf:action="#{jogadorController.salvar}" class="btn btn-primary" type="submit">
-                                        <span class="glyphicon glyphicon-floppy-disk" />
-                                    </button>
-                                    <button outcome="cadastro_jogador" value="Voltar" class="btn btn-default" data-dismiss="modal">
-                                        <span class="glyphicon glyphicon-off" />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </h:form>
-                </div>
-            </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#novoJogador"> <span class="glyphicon glyphicon-plus-sign" /> Novo Jogador
-                    </a>
-                </div>
-                <h:form>
-                    <h:dataTable id="jogadoresTables" value="#{jogadorController.jogadores}" var="j" styleClass="table table-striped">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nome" />
-                            </f:facet>
-                            <h:outputText value="#{j.nome}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Email" />
-                            </f:facet>
-                            <h:outputText value="#{j.email}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Telefone" />
-                            </f:facet>
-                            <h:outputText value="#{j.telefone}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Data Nascimento" />
-                            </f:facet>
-                            <h:outputText value="#{j.dataNascimento}">
-                                <f:convertDateTime pattern="dd/MM/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Sexo" />
-                            </f:facet>
-                            <h:outputText value="#{j.sexoFormatado}" />
-                        </h:column>
-                        <h:column>
-                            <button jsf:id="btRemover" jsf:action="#{jogadorController.remover}" class="btn btn-danger" type="submit">
-                                <span class="glyphicon glyphicon-trash" />
-                                <f:param name="id" value="#{j.id}" />
-                            </button>
-                            <h:commandLink href="#" class="btn btn-info" data-toggle="modal" data-target="#novoJogador">
-                                <f:param name="id" value="#{j.id}" />
-                                <span class="glyphicon glyphicon-pencil" />
-                            </h:commandLink>
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
-            </div>
-        </ui:define>
-    </ui:composition>
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Telefone:" styleClass="control-label" />
+												<h:inputText id="fone" styleClass="form-control phone"
+													value="#{jogadorController.jogador.telefone}" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button jsf:id="btSalvar"
+										jsf:action="#{jogadorController.salvar}"
+										class="btn btn-primary" type="submit">
+										<span class="glyphicon glyphicon-floppy-disk" />
+									</button>
+									<button value="Voltar" class="btn btn-default"
+										data-dismiss="modal">
+										<span class="glyphicon glyphicon-off" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<a href="#" class="btn btn-primary" data-toggle="modal"
+						data-target="#novoJogador"> <span
+						class="glyphicon glyphicon-plus-sign" /> Novo Jogador
+					</a>
+				</div>
+				<h:form>
+					<h:dataTable id="jogadoresTables"
+						value="#{jogadorController.jogadores}" var="j"
+						styleClass="table table-striped">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{j.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Email" />
+							</f:facet>
+							<h:outputText value="#{j.email}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Telefone" />
+							</f:facet>
+							<h:outputText value="#{j.telefone}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Data Nascimento" />
+							</f:facet>
+							<h:outputText value="#{j.dataNascimento}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Sexo" />
+							</f:facet>
+							<h:outputText value="#{j.sexoFormatado}" />
+						</h:column>
+						<h:column>
+							<button jsf:id="btRemover"
+								jsf:action="#{jogadorController.remover()}"
+								class="btn btn-danger" type="submit">
+								<span class="glyphicon glyphicon-trash" />
+								<f:setPropertyActionListener
+									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
+							</button>
+							<button class="btn btn-primary" data-toggle="modal"
+								data-target="#novoJogador"
+								jsf:action="#{jogadorController.carregarJogador()}">
+								<f:setPropertyActionListener
+									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
+								<span class="glyphicon glyphicon-pencil" />
+							</button>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

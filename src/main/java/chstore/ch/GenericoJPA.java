@@ -19,16 +19,18 @@ public class GenericoJPA {
 		this.em = em;
 	}
 
-	public <T> void salvar(T t) {
+	public <T> T salvar(T t) {
 		em.persist(t);
+		em.flush();
+		return t;
 	}
 
 	public <T> void atualizar(T t) {
 		em.merge(t);
 	}
 
-	public <T> void remover(T t) {
-		em.remove(em.merge(t));
+	public <T> void remover(int id, Class<T> klass) {
+		em.remove(em.find(klass, id));
 	}
 
 	public List<Jogador> buscarTodosJogadores() {

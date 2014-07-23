@@ -17,68 +17,72 @@ import chstore.ch.entidade.Torneio;
 @ViewScoped
 public class ListarTorneioController {
 
-    private Torneio novoTorneio;
-    private List<Torneio> torneios;
-    private String dataHoje = "";
-    private String id;
+	private Torneio novoTorneio;
+	private List<Torneio> torneios;
+	private String dataHoje = "";
+	private String id;
 
-    @Inject
-    private GenericoJPA genericoJPA;
+	@Inject
+	private GenericoJPA genericoJPA;
 
-    @PostConstruct
-    public void inicializar() {
-	novoTorneio = new Torneio();
-	dataHoje = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
-	torneios = genericoJPA.buscarTodosTorneios();
-    }
-
-    public String salvar() {
-	try {
-	    novoTorneio.setDataTorneio(new SimpleDateFormat("dd/MM/yyyy")
-		    .parse(dataHoje));
-	} catch (ParseException e) {
-	    e.printStackTrace();
+	@PostConstruct
+	public void inicializar() {
+		novoTorneio = new Torneio();
+		dataHoje = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
+		torneios = genericoJPA.buscarTodosTorneios();
 	}
-	genericoJPA.salvar(novoTorneio);
 
-	return "novo_torneio";
-    }
+	public String salvar() {
+		try {
+			novoTorneio.setDataTorneio(new SimpleDateFormat("dd/MM/yyyy")
+					.parse(dataHoje));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		genericoJPA.salvar(novoTorneio);
 
-    public void remover() {
-	genericoJPA
-		.remover(genericoJPA.buscarTorneioPorId(Integer.parseInt(id)));
-    }
+		return "novo_torneio";
+	}
 
-    public Torneio getNovoTorneio() {
-	return novoTorneio;
-    }
+	public void remover() {
+		genericoJPA.remover(Integer.parseInt(id), Torneio.class);
+	}
 
-    public void setNovoTorneio(Torneio novoTorneio) {
-	this.novoTorneio = novoTorneio;
-    }
+	public void visualizarJogadores() {
+		novoTorneio = genericoJPA.buscarTorneioPorId(Integer.parseInt(id));
+		System.out.println(novoTorneio);
+	}
 
-    public List<Torneio> getTorneios() {
-	return torneios;
-    }
+	public Torneio getNovoTorneio() {
+		return novoTorneio;
+	}
 
-    public void setTorneios(List<Torneio> torneios) {
-	this.torneios = torneios;
-    }
+	public void setNovoTorneio(Torneio novoTorneio) {
+		this.novoTorneio = novoTorneio;
+	}
 
-    public String getDataHoje() {
-	return dataHoje;
-    }
+	public List<Torneio> getTorneios() {
+		return torneios;
+	}
 
-    public void setDataHoje(String dataHoje) {
-	this.dataHoje = dataHoje;
-    }
+	public void setTorneios(List<Torneio> torneios) {
+		this.torneios = torneios;
+	}
 
-    public String getId() {
-	return id;
-    }
+	public String getDataHoje() {
+		return dataHoje;
+	}
 
-    public void setId(String id) {
-	this.id = id;
-    }
+	public void setDataHoje(String dataHoje) {
+		this.dataHoje = dataHoje;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 }

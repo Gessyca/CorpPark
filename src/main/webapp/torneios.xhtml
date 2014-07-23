@@ -96,8 +96,12 @@
                             <h:outputText value="#{t.clan}" />
                         </h:column>
                         <h:column>
-                            <button jsf:id="btRemover" jsf:action="#{listarTorneioController.remover()}" class="btn btn-danger" type="submit">
+                            <button jsf:id="btRemover" jsf:action="#{listarTorneioController.remover()}" class="btn btn-danger" type="submit" title="Remover Torneio">
                                 <span class="glyphicon glyphicon-trash" />
+                                <f:param name="id" value="#{t.id}" />
+                            </button>
+                             <button jsf:id="btVisualizarJogadores" jsf:action="#{listarTorneioController.visualizarJogadores()}" class="btn btn-info" type="submit" title="Visualizar Jogadores">
+                                <span class="glyphicon glyphicon-user" />
                                 <f:param name="id" value="#{t.id}" />
                             </button>
                         </h:column>

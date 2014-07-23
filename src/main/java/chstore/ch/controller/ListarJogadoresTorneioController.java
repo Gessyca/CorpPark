@@ -41,13 +41,16 @@ public class ListarJogadoresTorneioController {
 	public String atualizar() {
 
 		if (vencedor1.length() > 0) {
-			adicionarVencedor(vencedor1);
+			torneio.setVencedor1(adicionarVencedor(vencedor1));
+			torneio.getJogadores().add(torneio.getVencedor1());
 		}
 		if (vencedor2.length() > 0) {
-			adicionarVencedor(vencedor2);
+			torneio.setVencedor2(adicionarVencedor(vencedor2));
+			torneio.getJogadores().add(torneio.getVencedor2());
 		}
 		if (vencedor3.length() > 0) {
-			adicionarVencedor(vencedor3);
+			torneio.setVencedor3(adicionarVencedor(vencedor3));
+			torneio.getJogadores().add(torneio.getVencedor3());
 		}
 
 		genericoJPA.atualizar(torneio);
@@ -58,18 +61,20 @@ public class ListarJogadoresTorneioController {
 		return genericoJPA.buscarJogadorPorNome(nome);
 	}
 
-	public void adicionarVencedor(String vencedor) {
+	public Jogador adicionarVencedor(String vencedor) {
 		Jogador novoJogador = buscarJogadorPorNome(vencedor);
 		if (novoJogador != null) {
 			atualizarPontuacaoJogador(novoJogador, 8);
-			novoJogador.setPontuacao(8);
-			torneio.getJogadores().add(novoJogador);
+			return novoJogador;
+		} else {
+			return null;
 		}
 	}
 
 	public void atualizarPontuacaoJogador(Jogador jogador, int pont) {
 		int pontuacao = jogador.getPontuacao() + pont;
 		jogador.setPontuacao(pontuacao);
+		jogador.getTorneios().add(torneio);
 		genericoJPA.atualizar(jogador);
 	}
 

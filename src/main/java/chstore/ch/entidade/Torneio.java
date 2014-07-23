@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,8 +33,17 @@ public class Torneio {
 	private int formato;
 	private String local;
 	private String clan;
+	@ManyToOne
+	@JoinColumn(name = "vencedor_1_id")
+	private Jogador vencedor1;
+	@ManyToOne
+	@JoinColumn(name = "vencedor_2_id")
+	private Jogador vencedor2;
+	@ManyToOne
+	@JoinColumn(name = "vencedor_3_id")
+	private Jogador vencedor3;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "jogador_torneio", joinColumns = { @JoinColumn(name = "torneio_id") }, inverseJoinColumns = { @JoinColumn(name = "jogador_id") })
 	private List<Jogador> jogadores = new ArrayList<>();
 
@@ -101,6 +112,37 @@ public class Torneio {
 
 		}
 		return formatoAux;
+	}
+
+	public Jogador getVencedor1() {
+		return vencedor1;
+	}
+
+	public void setVencedor1(Jogador vencedor1) {
+		this.vencedor1 = vencedor1;
+	}
+
+	public Jogador getVencedor2() {
+		return vencedor2;
+	}
+
+	public void setVencedor2(Jogador vencedor2) {
+		this.vencedor2 = vencedor2;
+	}
+
+	public Jogador getVencedor3() {
+		return vencedor3;
+	}
+
+	public void setVencedor3(Jogador vencedor3) {
+		this.vencedor3 = vencedor3;
+	}
+
+	@Override
+	public String toString() {
+		return "Torneio [id=" + id + ", dataTorneio=" + dataTorneio
+				+ ", formato=" + formato + ", local=" + local + ", clan="
+				+ clan + ", jogadores=" + jogadores + "]";
 	}
 
 }

@@ -1,5 +1,6 @@
 package chstore.ch.entidade;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -14,8 +15,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "jogador")
-public class Jogador {
+public class Jogador implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int HOMEM = 1;
 	private static final int MULHER = 2;
 
@@ -110,6 +115,14 @@ public class Jogador {
 
 	public void setTorneios(List<Torneio> torneios) {
 		this.torneios = torneios;
+	}
+
+	@Override
+	public String toString() {
+		return "Jogador [id=" + id + ", nome=" + nome + ", telefone="
+				+ telefone + ", email=" + email + ", dataNascimento="
+				+ dataNascimento + ", sexo=" + sexo + ", pontuacao="
+				+ pontuacao + ", torneios=" + torneios + "]";
 	}
 
 }
