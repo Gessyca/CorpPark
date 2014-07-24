@@ -1,5 +1,6 @@
 package chstore.ch.controller;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import chstore.ch.GenericoJPA;
@@ -19,9 +20,13 @@ import chstore.ch.entidade.Jogador;
  */
 @ManagedBean
 @ViewScoped
-public class JogadorController {
+public class JogadorController implements Serializable{
 
-	@Inject
+	/**
+   * 
+   */
+  private static final long serialVersionUID = 2302726952409017131L;
+  @Inject
 	private GenericoJPA genericoJPA;
 	private String dataString;
 	private List<Jogador> jogadores;

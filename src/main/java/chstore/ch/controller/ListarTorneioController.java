@@ -1,5 +1,6 @@
 package chstore.ch.controller;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import chstore.ch.GenericoJPA;
@@ -15,9 +16,13 @@ import chstore.ch.entidade.Torneio;
 
 @ManagedBean
 @ViewScoped
-public class ListarTorneioController {
+public class ListarTorneioController implements Serializable{
 
-	private Torneio novoTorneio;
+	/**
+   * 
+   */
+  private static final long serialVersionUID = -6713627153575751162L;
+  private Torneio novoTorneio;
 	private List<Torneio> torneios;
 	private String dataHoje = "";
 	private String id;

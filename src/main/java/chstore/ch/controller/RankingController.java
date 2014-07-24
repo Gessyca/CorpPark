@@ -1,11 +1,12 @@
 package chstore.ch.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import chstore.ch.GenericoJPA;
@@ -14,7 +15,7 @@ import chstore.ch.entidade.Torneio;
 
 @ManagedBean
 @ViewScoped
-public class RankingController {
+public class RankingController implements Serializable{
 
     private List<Jogador> jogadores;
     private List<Torneio> qtdTotalTorneios;

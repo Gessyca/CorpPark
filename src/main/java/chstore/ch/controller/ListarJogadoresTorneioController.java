@@ -1,10 +1,11 @@
 package chstore.ch.controller;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import chstore.ch.GenericoJPA;
@@ -13,9 +14,13 @@ import chstore.ch.entidade.Torneio;
 
 @ManagedBean
 @ViewScoped
-public class ListarJogadoresTorneioController {
+public class ListarJogadoresTorneioController implements Serializable{
 
-	private List<Jogador> jogadores;
+	/**
+   * 
+   */
+  private static final long serialVersionUID = -8364688478856614352L;
+  private List<Jogador> jogadores;
 	private Torneio torneio;
 	private String vencedor1;
 	private String vencedor2;
