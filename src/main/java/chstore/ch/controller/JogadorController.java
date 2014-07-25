@@ -54,7 +54,6 @@ public class JogadorController {
 	}
 
 	public void editar() {
-		System.out.println(jogadorSelecionado.getEmail());
 
 		if (jogadorSelecionado.getId() > 0) {
 			genericoJPA.atualizar(jogadorSelecionado);

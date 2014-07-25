@@ -103,13 +103,13 @@
 							<f:facet name="header">
 								<h:outputText value="Email" />
 							</f:facet>
-							<h:inputText value="#{j.email}" class="form-control" p:type="email"/>
+							<h:inputText value="#{j.email}" class="form-control" p:type="email" p:required="true"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Telefone" />
 							</f:facet>
-							<h:inputText value="#{j.telefone}" styleClass="form-control phone"/>
+							<h:inputText value="#{j.telefone}" styleClass="form-control phone" p:required="true"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
