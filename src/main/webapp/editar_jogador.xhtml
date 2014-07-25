@@ -12,7 +12,9 @@
 		</ui:define>
 		<ui:define name="content">
 			<h:form>
-				#{jogagorController.jogadorSelecionado.nome}
+				<div class="form-group">
+					<h:outputText value="#{jogadorController.idJogador}" />
+				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>

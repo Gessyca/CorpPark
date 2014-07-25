@@ -1,6 +1,5 @@
 package chstore.ch.controller;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,9 +15,8 @@ import chstore.ch.entidade.Jogador;
 
 @ManagedBean
 @ViewScoped
-public class JogadorController implements Serializable {
+public class JogadorController {
 
-	private static final long serialVersionUID = 2302726952409017131L;
 	@Inject
 	private GenericoJPA genericoJPA;
 	private String dataString;
@@ -30,10 +28,8 @@ public class JogadorController implements Serializable {
 
 	@PostConstruct
 	public void inicializar() {
-		jogadorSelecionado = new Jogador();
 		jogador = new Jogador();
 		jogadores = genericoJPA.buscarTodosJogadores();
-		System.out.println(idJogador);
 	}
 
 	public void salvar() {
@@ -57,20 +53,19 @@ public class JogadorController implements Serializable {
 		dataString = null;
 	}
 
-	public String redirecionarEditar() {
-		return "editar_jogador";
+	public void editar() {
+		System.out.println(jogadorSelecionado.getEmail());
+
+		if (jogadorSelecionado.getId() > 0) {
+			genericoJPA.atualizar(jogadorSelecionado);
+		}
+		inicializar();
 
 	}
 
 	public void remover() {
 		genericoJPA.remover(jogadorSelecionado.getId(), Jogador.class);
 		inicializar();
-	}
-
-	public void carregarJogador() {
-		if (idJogador != 0) {
-			jogadorSelecionado = genericoJPA.buscarJogadorPorId(idJogador);
-		}
 	}
 
 	public Jogador getJogador() {
