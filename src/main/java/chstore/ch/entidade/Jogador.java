@@ -35,9 +35,6 @@ public class Jogador implements Serializable{
 	private int sexo;
 	private int pontuacao;
 
-	@ManyToMany(mappedBy = "jogadores", fetch = FetchType.EAGER)
-	private List<Torneio> torneios;
-
 	public Jogador() {
 	}
 
@@ -109,20 +106,5 @@ public class Jogador implements Serializable{
 		return sexoAux;
 	}
 
-	public List<Torneio> getTorneios() {
-		return torneios;
-	}
-
-	public void setTorneios(List<Torneio> torneios) {
-		this.torneios = torneios;
-	}
-
-	@Override
-	public String toString() {
-		return "Jogador [id=" + id + ", nome=" + nome + ", telefone="
-				+ telefone + ", email=" + email + ", dataNascimento="
-				+ dataNascimento + ", sexo=" + sexo + ", pontuacao="
-				+ pontuacao + ", torneios=" + torneios + "]";
-	}
 
 }

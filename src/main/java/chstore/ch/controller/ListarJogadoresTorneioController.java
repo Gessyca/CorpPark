@@ -79,7 +79,7 @@ public class ListarJogadoresTorneioController implements Serializable{
 	public void atualizarPontuacaoJogador(Jogador jogador, int pont) {
 		int pontuacao = jogador.getPontuacao() + pont;
 		jogador.setPontuacao(pontuacao);
-		jogador.getTorneios().add(torneio);
+//		jogador.getTorneios().add(torneio);
 		genericoJPA.atualizar(jogador);
 	}
 
