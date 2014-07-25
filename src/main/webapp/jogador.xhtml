@@ -14,7 +14,7 @@
 			<div class="modal fade" id="novoJogador" tabindex="-1" role="dialog"
 				aria-labelledby="novoJogador" aria-hidden="true">
 				<div class="modal-dialog">
-					<h:form>
+					<h:form id="form1">
 						<div class="panel panel-primary">
 							<div class="panel-heading">CADASTRO NOVO JOGADOR</div>
 							<div class="modal-content">
@@ -128,16 +128,14 @@
 						<h:column>
 							<button jsf:id="btRemover"
 								jsf:action="#{jogadorController.remover()}"
-								class="btn btn-danger" type="submit">
+								class="btn btn-danger" type="submit" title="Remover">
 								<span class="glyphicon glyphicon-trash" />
 								<f:setPropertyActionListener
 									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
 							</button>
-							<button class="btn btn-primary" data-toggle="modal"
-								data-target="#novoJogador"
-								jsf:action="#{jogadorController.carregarJogador()}">
-								<f:setPropertyActionListener
-									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
+							<button jsf:id="btEditar" class="btn btn-info" type="submit"
+								jsf:action="#{jogadorController.redirecionarEditar}"
+								title="Editar">
 								<span class="glyphicon glyphicon-pencil" />
 							</button>
 						</h:column>
@@ -145,6 +143,9 @@
 				</h:form>
 			</div>
 		</ui:define>
+		<script>
+			
+		</script>
 	</ui:composition>
 </h:body>
 </html>

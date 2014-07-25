@@ -14,23 +14,17 @@ import javax.inject.Inject;
 import chstore.ch.GenericoJPA;
 import chstore.ch.entidade.Jogador;
 
-/**
- * 
- * @author gessyca.lm
- */
 @ManagedBean
 @ViewScoped
-public class JogadorController implements Serializable{
+public class JogadorController implements Serializable {
 
-	/**
-   * 
-   */
-  private static final long serialVersionUID = 2302726952409017131L;
-  @Inject
+	private static final long serialVersionUID = 2302726952409017131L;
+	@Inject
 	private GenericoJPA genericoJPA;
 	private String dataString;
 	private List<Jogador> jogadores;
 	private Jogador jogadorSelecionado;
+	private int idJogador;
 
 	private Jogador jogador;
 
@@ -39,6 +33,7 @@ public class JogadorController implements Serializable{
 		jogadorSelecionado = new Jogador();
 		jogador = new Jogador();
 		jogadores = genericoJPA.buscarTodosJogadores();
+		System.out.println(idJogador);
 	}
 
 	public void salvar() {
@@ -62,14 +57,20 @@ public class JogadorController implements Serializable{
 		dataString = null;
 	}
 
+	public String redirecionarEditar() {
+		return "editar_jogador";
+
+	}
+
 	public void remover() {
-		System.out.println(jogadorSelecionado);
 		genericoJPA.remover(jogadorSelecionado.getId(), Jogador.class);
 		inicializar();
 	}
 
 	public void carregarJogador() {
-		jogador = jogadorSelecionado;
+		if (idJogador != 0) {
+			jogadorSelecionado = genericoJPA.buscarJogadorPorId(idJogador);
+		}
 	}
 
 	public Jogador getJogador() {
@@ -102,6 +103,14 @@ public class JogadorController implements Serializable{
 
 	public void setJogadorSelecionado(Jogador jogadorSelecionado) {
 		this.jogadorSelecionado = jogadorSelecionado;
+	}
+
+	public int getIdJogador() {
+		return idJogador;
+	}
+
+	public void setIdJogador(int idJogador) {
+		this.idJogador = idJogador;
 	}
 
 }
