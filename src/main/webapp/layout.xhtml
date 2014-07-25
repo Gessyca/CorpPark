@@ -23,14 +23,13 @@
 	<nav class="navbar navbar-inverse">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="index.xhtml"> <h:graphicImage
-					value="/resources/logo.png"
-					style="margin-top: -22px; height:70px;" />
+			<a class="navbar-brand" href="#{request.contextPath}/index.xhtml"> <h:graphicImage
+					value="/resources/logo.png" style="margin-top: -22px; height:70px;" />
 			</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="jogador.xhtml">Jogadores <span
+				<li><a href="#{request.contextPath}/jogador/jogador.xhtml">Jogadores <span
 						class="badge pull-top">#{jogadorController.jogadores.size()}</span></a></li>
 			</ul>
 		</div>

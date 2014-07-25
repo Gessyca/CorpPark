@@ -14,7 +14,7 @@
 			<div class="modal fade" id="novoJogador" tabindex="-1" role="dialog"
 				aria-labelledby="novoJogador" aria-hidden="true">
 				<div class="modal-dialog">
-					<h:form>
+					<h:form id="form1">
 						<div class="panel panel-primary">
 							<div class="panel-heading">CADASTRO NOVO JOGADOR</div>
 							<div class="modal-content">
@@ -103,13 +103,13 @@
 							<f:facet name="header">
 								<h:outputText value="Email" />
 							</f:facet>
-							<h:outputText value="#{j.email}" />
+							<h:inputText value="#{j.email}" class="form-control" p:type="email" p:required="true"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Telefone" />
 							</f:facet>
-							<h:outputText value="#{j.telefone}" />
+							<h:inputText value="#{j.telefone}" styleClass="form-control phone" p:required="true"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
@@ -128,17 +128,17 @@
 						<h:column>
 							<button jsf:id="btRemover"
 								jsf:action="#{jogadorController.remover()}"
-								class="btn btn-danger" type="submit">
+								class="btn btn-danger" type="submit" title="Remover">
 								<span class="glyphicon glyphicon-trash" />
 								<f:setPropertyActionListener
 									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
 							</button>
-							<button class="btn btn-primary" data-toggle="modal"
-								data-target="#novoJogador"
-								jsf:action="#{jogadorController.carregarJogador()}">
+							<button jsf:id="btEditar"
+								jsf:action="#{jogadorController.editar}"
+								class="btn btn-info" type="submit" title="Editar">
+								<span class="glyphicon glyphicon-pencil" />
 								<f:setPropertyActionListener
 									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
-								<span class="glyphicon glyphicon-pencil" />
 							</button>
 						</h:column>
 					</h:dataTable>
