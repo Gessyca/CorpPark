@@ -103,13 +103,13 @@
 							<f:facet name="header">
 								<h:outputText value="Email" />
 							</f:facet>
-							<h:inputText value="#{j.email}" class="form-control" p:type="email" p:required="true"/>
+							<h:inputText value="#{j.email}" class="form-control semBorda" p:type="email" p:required="true"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Telefone" />
 							</f:facet>
-							<h:inputText value="#{j.telefone}" styleClass="form-control phone" p:required="true"/>
+							<h:inputText value="#{j.telefone}" styleClass="form-control phone semBorda" p:required="true"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
@@ -135,7 +135,7 @@
 							</button>
 							<button jsf:id="btEditar"
 								jsf:action="#{jogadorController.editar}"
-								class="btn btn-info" type="submit" title="Editar">
+								class="btn btn-warning" type="submit" title="Editar">
 								<span class="glyphicon glyphicon-pencil" />
 								<f:setPropertyActionListener
 									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />

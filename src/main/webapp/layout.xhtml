@@ -15,7 +15,21 @@
 	rel="stylesheet" type="text/css" media="screen" />
 
 <link rel="icon" href="#{request.contextPath}/images/favicon.ico" />
+<style rel="stylesheet" type="text/css">
+.right {
+	margin-left: 280px;
+	padding-top: 140px;
+}
 
+.semBorda {
+	border: 0px;
+	background: #F5FFFA;
+}
+
+.imagem {
+	background-image: url (/resources /imagem.jpg);
+}
+</style>
 <title>CH Torneios</title>
 </head>
 
@@ -23,14 +37,16 @@
 	<nav class="navbar navbar-inverse">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#{request.contextPath}/index.xhtml"> <h:graphicImage
-					value="/resources/logo.png" style="margin-top: -22px; height:70px;" />
+			<a class="navbar-brand" href="#{request.contextPath}/index.xhtml">
+				<h:graphicImage value="/resources/logo.png"
+					style="margin-top: -22px; height:70px;" />
 			</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="#{request.contextPath}/jogador/jogador.xhtml">Jogadores <span
-						class="badge pull-top">#{jogadorController.jogadores.size()}</span></a></li>
+				<li><a href="#{request.contextPath}/jogador/jogador.xhtml">Jogadores
+						<span class="badge pull-top">#{jogadorController.jogadores.size()}</span>
+				</a></li>
 			</ul>
 		</div>
 	</div>
