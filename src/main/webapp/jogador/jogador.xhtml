@@ -92,38 +92,45 @@
 				<h:form>
 					<h:dataTable id="jogadoresTables"
 						value="#{jogadorController.jogadores}" var="j"
-						styleClass="table table-striped">
+						styleClass="table table-striped" columnClasses="campoG,campoG,campoN,campoN,campoP">
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Nome" />
 							</f:facet>
-							<h:outputText value="#{j.nome}" />
+							<h:inputText value="#{j.nome}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Email" />
 							</f:facet>
-							<h:inputText value="#{j.email}" class="form-control semBorda" p:type="email" p:required="true"/>
+							<h:inputText value="#{j.email}" class="form-control semBorda"
+								p:type="email" p:required="true" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Telefone" />
 							</f:facet>
-							<h:inputText value="#{j.telefone}" styleClass="form-control phone semBorda" p:required="true"/>
+							<h:inputText value="#{j.telefone}"
+								styleClass="form-control phone semBorda" p:required="true" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Data Nascimento" />
 							</f:facet>
-							<h:outputText value="#{j.dataNascimento}">
+							<h:inputText value="#{j.dataNascimento}"
+								class="form-control semBorda" p:type="date" p:required="true"
+								disabled="true">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
+							</h:inputText>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Sexo" />
 							</f:facet>
-							<h:outputText value="#{j.sexoFormatado}" />
+							<h:inputText value="#{j.sexoFormatado}"
+								class="form-control semBorda" p:type="string" p:required="true"
+								disabled="true" />
 						</h:column>
 						<h:column>
 							<button jsf:id="btRemover"
@@ -134,8 +141,8 @@
 									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
 							</button>
 							<button jsf:id="btEditar"
-								jsf:action="#{jogadorController.editar}"
-								class="btn btn-warning" type="submit" title="Editar">
+								jsf:action="#{jogadorController.editar}" class="btn btn-warning"
+								type="submit" title="Editar">
 								<span class="glyphicon glyphicon-pencil" />
 								<f:setPropertyActionListener
 									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />

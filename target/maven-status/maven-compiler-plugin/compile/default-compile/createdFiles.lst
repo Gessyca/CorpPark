@@ -1,4 +1,5 @@
 chstore/ch/controller/RankingController.class
+chstore/ch/controller/LoginController.class
 chstore/ch/entidade/Usuario.class
 chstore/ch/GenericoJPA.class
 chstore/ch/controller/ListarJogadoresTorneioController.class
