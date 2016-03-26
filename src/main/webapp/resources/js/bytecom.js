@@ -1,11 +1,13 @@
 jQuery(function($) {
 	$(".date").mask("99/99/9999");
 	$(".data").mask("99/99/9999");
-	$(".phone").mask("(99)9999-9999");
+	$(".phone").mask("(99)99999-9999");
 	$(".cpf").mask("999.999.999-99");
 	$(".cnpj").mask("99.999.999/9999-99");
 	$.mask.definitions['X'] = "[A-Fa-f0-9]";
 	$(".mac").mask("XX:XX:XX:XX:XX:XX");
+	$.mask.definitions['A'] = "[a-z]";
+	$(".placa").mask("AAA-9999");
 });
 
 function submitLink(event, linkId){

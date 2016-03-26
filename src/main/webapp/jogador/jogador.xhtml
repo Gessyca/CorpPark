@@ -16,52 +16,47 @@
 				<div class="modal-dialog">
 					<h:form id="form1">
 						<div class="panel panel-primary">
-							<div class="panel-heading">CADASTRO NOVO JOGADOR</div>
+							<div class="panel-heading">CADASTRO NOVO COLABORADOR</div>
 							<div class="modal-content">
 								<div class="modal-body">
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<h:outputLabel value="Nome:" styleClass="control-label" />
+												<h:outputLabel value="Matricula:" styleClass="control-label" />
 												<h:inputText class="form-control"
+													value="#{jogadorController.jogador.matricula}" p:required="true" />
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Nome:" styleClass="control-label" />
+												<h:inputText class="form-control" style="text-transform:uppercase"
 													value="#{jogadorController.jogador.nome}" p:required="true" />
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<h:outputLabel value="Sexo:" styleClass="control-label" />
-												<h:selectOneMenu value="#{jogadorController.jogador.sexo}"
-													class="form-control">
-													<f:selectItem itemLabel="Homem" itemValue="1" />
-													<f:selectItem itemLabel="Mulher" itemValue="2" />
-												</h:selectOneMenu>
+												<h:outputLabel value="Ramal:" styleClass="control-label" />
+												<h:inputText class="form-control"
+													value="#{jogadorController.jogador.ramal}" p:required="true" />
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<h:outputLabel value="Data de Nacimento:"
-													styleClass="control-label" />
-												<h:inputText styleClass="form-control date"
-													value="#{jogadorController.dataString}" p:required="true" />
-											</div>
-										</div>
-
-										<div class="col-md-6">
-											<div class="form-group">
-												<h:outputLabel value="Email:" styleClass="control-label" />
-												<h:inputText class="form-control" p:type="email"
-													value="#{jogadorController.jogador.email}"
-													p:required="true" />
-											</div>
-										</div>
-
-										<div class="col-md-6">
-											<div class="form-group">
-												<h:outputLabel value="Telefone:" styleClass="control-label" />
+												<h:outputLabel value="Celular:" styleClass="control-label" />
 												<h:inputText id="fone" styleClass="form-control phone"
-													value="#{jogadorController.jogador.telefone}" />
+													value="#{jogadorController.jogador.celular}" />
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="E-mail:" styleClass="control-label" />
+												<h:inputText class="form-control" style="text-transform:uppercase"
+													value="#{jogadorController.jogador.email}" p:required="true" />
 											</div>
 										</div>
 									</div>
@@ -86,13 +81,20 @@
 				<div class="panel-heading">
 					<a href="#" class="btn btn-primary" data-toggle="modal"
 						data-target="#novoJogador"> <span
-						class="glyphicon glyphicon-plus-sign" /> Novo Jogador
+						class="glyphicon glyphicon-plus-sign" /> Novo Colaborador
 					</a>
 				</div>
 				<h:form>
 					<h:dataTable id="jogadoresTables"
 						value="#{jogadorController.jogadores}" var="j"
-						styleClass="table table-striped" columnClasses="campoG,campoG,campoN,campoN,campoP">
+						styleClass="table table-striped" columnClasses="campoP,campoGG,campoN,campoP,campoG">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Matricula" />
+							</f:facet>
+							<h:inputText value="#{j.matricula}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Nome" />
@@ -102,48 +104,30 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Email" />
+								<h:outputText value="Celular" />
+							</f:facet>
+							<h:inputText value="#{j.celular}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ramal" />
+							</f:facet>
+							<h:inputText value="#{j.ramal}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="E-mail" />
 							</f:facet>
 							<h:inputText value="#{j.email}" class="form-control semBorda"
-								p:type="email" p:required="true" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Telefone" />
-							</f:facet>
-							<h:inputText value="#{j.telefone}"
-								styleClass="form-control phone semBorda" p:required="true" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Data Nascimento" />
-							</f:facet>
-							<h:inputText value="#{j.dataNascimento}"
-								class="form-control semBorda" p:type="date" p:required="true"
-								disabled="true">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Sexo" />
-							</f:facet>
-							<h:inputText value="#{j.sexoFormatado}"
-								class="form-control semBorda" p:type="string" p:required="true"
-								disabled="true" />
+								p:type="string" p:required="true" disabled="true" />
 						</h:column>
 						<h:column>
 							<button jsf:id="btRemover"
 								jsf:action="#{jogadorController.remover()}"
 								class="btn btn-danger" type="submit" title="Remover">
 								<span class="glyphicon glyphicon-trash" />
-								<f:setPropertyActionListener
-									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
-							</button>
-							<button jsf:id="btEditar"
-								jsf:action="#{jogadorController.editar}" class="btn btn-warning"
-								type="submit" title="Editar">
-								<span class="glyphicon glyphicon-pencil" />
 								<f:setPropertyActionListener
 									target="#{jogadorController.jogadorSelecionado}" value="#{j}" />
 							</button>

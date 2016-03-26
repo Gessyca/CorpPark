@@ -1,31 +1,21 @@
 create database ch;
 use ch;
 
-create table jogador(
+create table colaborador(
 id int primary key not null auto_increment,
-nome varchar(255),
-email varchar(255),
-sexo int,
-pontuacao int,
-telefone varchar(255),
-data_nascimento datetime
+matricula varchar(10) not null,
+nome varchar(255) not null,
+email varchar(255) not null,
+celular varchar(255),
+ramal int
 );
 
-create table torneio(
+create table veiculo(
 id int primary key not null auto_increment,
-data_torneio datetime,
-local varchar(255),
-formato int,
-clan varchar(255),
-vencedor_1_id int,
-vencedor_2_id int,
-vencedor_3_id int
-);
-
-create table jogador_torneio (jogador_id int, torneio_id int);
-
-create table usuario (
-id int primary key not null auto_increment,
-nome varchar(255),
-senha varchar(255)
+tipo varchar(10) not null,
+modelo varchar(255) not null,
+marca varchar(255) not null,
+placa varchar(255) not null,
+cor varchar(10) not null,
+id_colaborador int not null
 );

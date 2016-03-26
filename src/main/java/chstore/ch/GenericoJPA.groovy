@@ -1,13 +1,11 @@
 package chstore.ch;
 
-import java.util.List;
+import javax.persistence.EntityManager
+import javax.persistence.PersistenceContext
+import javax.transaction.Transactional
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
-import chstore.ch.entidade.Jogador;
-import chstore.ch.entidade.Torneio;
+import chstore.ch.entidade.Jogador
+import chstore.ch.entidade.Veiculo
 
 @Transactional
 public class GenericoJPA {
@@ -38,34 +36,13 @@ public class GenericoJPA {
 		return em.createQuery(jpql, Jogador.class).getResultList();
 	}
 
-	public List<Torneio> buscarTodosTorneios() {
-		String jpql = "select t from Torneio t";
-		return em.createQuery(jpql, Torneio.class).getResultList();
-	}
-
-	public List<Jogador> buscarJogadoresOrdemPontuacao() {
-		String jpql = "select j from Jogador j order by j.pontuacao desc";
-		return em.createQuery(jpql, Jogador.class).getResultList();
-	}
-
-	public Torneio ultimoTorneioSalvo() {
-		String jpql = "select t from Torneio t order by t.id desc";
-		List<Torneio> list = em.createQuery(jpql, Torneio.class)
-				.getResultList();
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		} else {
-			return null;
-		}
+	public List<Veiculo> buscarTodosVeiculos() {
+		String jpql = "select j from Veiculo j order by j.tipo";
+		return em.createQuery(jpql, Veiculo.class).getResultList();
 	}
 
 	public Jogador buscarJogadorPorId(int id) {
 		return em.find(Jogador.class, id);
-	}
-
-	public Torneio buscarTorneioPorId(int id) {
-		return em.find(Torneio.class, id);
 	}
 
 	public Jogador buscarJogadorPorNome(String nome) {

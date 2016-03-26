@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+	<ui:composition template="../layout.xhtml">
+		<ui:define name="title">
+		</ui:define>
+		<ui:define name="content">
+			<div class="modal fade" id="novoVeiculo" tabindex="-1" role="dialog"
+				aria-labelledby="novoVeiculo" aria-hidden="true">
+				<div class="modal-dialog">
+					<h:form id="form1">
+						<div class="panel panel-primary">
+							<div class="panel-heading">CADASTRO NOVO VEICULO</div>
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Tipo:" styleClass="control-label" />
+												<h:selectOneMenu
+													value="#{veiculoController.veiculo.tipo}"
+													class="form-control">
+													<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+													<f:selectItem itemLabel="CARRO" itemValue="CARRO" />
+													<f:selectItem itemLabel="MOTO" itemValue="MOTO" />
+													<f:selectItem itemLabel="OUTROS" itemValue="OUTROS" />
+													<f:ajax event="change" listener="#{veiculoController.atualizalistaMarcas()}" render=":form1" />
+												</h:selectOneMenu>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Marca:" styleClass="control-label" />
+												<h:selectOneMenu id="marca"
+													value="#{veiculoController.veiculo.marca}"
+													class="form-control" rendered="#{veiculoController.veiculo.tipo != 'OUTROS'}">
+													<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+													<f:selectItems
+														value="#{veiculoController.marcas}"
+														var="j" itemLabel="#{j}" itemValue="#{j}" />
+												</h:selectOneMenu>
+												<h:inputText  id="marcaInput" class="form-control"
+													value="#{veiculoController.veiculo.marca}" rendered="#{veiculoController.veiculo.tipo == 'OUTROS'}" 
+													p:placeholder="Informe a marca"/>
+											</div>
+										</div>
+										
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Modelo:" styleClass="control-label" />
+												<h:inputText class="form-control"
+													value="#{veiculoController.veiculo.modelo}"
+													p:required="true" />
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Placa:" styleClass="control-label" />
+												<h:inputText class="form-control" styleClass="form-control placa" style="text-transform:uppercase"
+													value="#{veiculoController.veiculo.placa}" p:required="true" />
+											</div>
+										</div>
+										
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Cor:" styleClass="control-label" />
+												<h:selectOneMenu
+													value="#{veiculoController.veiculo.cor}"
+													class="form-control">
+													<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+													<f:selectItem itemLabel="BRANCO" itemValue="BRANCO" />
+													<f:selectItem itemLabel="PRATA" itemValue="PRATA" />
+													<f:selectItem itemLabel="PRETO" itemValue="PRETO" />
+													<f:selectItem itemLabel="CINZA" itemValue="CINZA" />
+													<f:selectItem itemLabel="VERMELHO" itemValue="VERMELHO" />
+													<f:selectItem itemLabel="AZUL" itemValue="AZUL" />
+													<f:selectItem itemLabel="MARROM" itemValue="MARROM" />
+													<f:selectItem itemLabel="VERDE" itemValue="VERDE" />
+													<f:selectItem itemLabel="AMARELO" itemValue="AMARELO" />
+													<f:selectItem itemLabel="OUTROS" itemValue="OUTROS" />
+												</h:selectOneMenu>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<h:outputLabel value="Proprietario:"
+													styleClass="control-label" />
+												<h:selectOneMenu
+													value="#{veiculoController.idTemp}"
+													class="form-control">
+													<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+													<f:selectItems
+														value="#{veiculoController.colaboradores}"
+														var="j" itemLabel="#{j.nome}" itemValue="#{j.id}" />
+												</h:selectOneMenu>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button jsf:id="btSalvar"
+										jsf:action="#{veiculoController.salvar}"
+										class="btn btn-primary" type="submit">
+										<span class="glyphicon glyphicon-floppy-disk" />
+									</button>
+									<button value="Voltar" class="btn btn-default"
+										data-dismiss="modal">
+										<span class="glyphicon glyphicon-off" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<a href="#" class="btn btn-primary" data-toggle="modal"
+						data-target="#novoVeiculo"> <span
+						class="glyphicon glyphicon-plus-sign" /> Novo Veiculo
+					</a>
+				</div>
+				<h:form>
+					<h:dataTable id="veiculosTables"
+						value="#{veiculoController.veiculos}" var="j"
+						styleClass="table table-striped"
+						columnClasses="campoP,campoN,campoN,campoN,campoN,campoN,campoGG">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:inputText value="#{j.id}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Tipo" />
+							</f:facet>
+							<h:inputText value="#{j.tipo}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Marca" />
+							</f:facet>
+							<h:inputText value="#{j.marca}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Modelo" />
+							</f:facet>
+							<h:inputText value="#{j.modelo}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Placa" />
+							</f:facet>
+							<h:inputText value="#{j.placa}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Cor" />
+							</f:facet>
+							<h:inputText value="#{j.cor}" class="form-control semBorda"
+								p:type="string" p:required="true" disabled="true" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Proprietario" />
+							</f:facet>
+							<h:inputText value="#{j.jogador.nome}"
+								class="form-control semBorda" p:type="string" p:required="true"
+								disabled="true" />
+						</h:column>
+						<h:column>
+							<button jsf:id="btRemover"
+								jsf:action="#{veiculoController.remover()}"
+								class="btn btn-danger" type="submit" title="Remover">
+								<span class="glyphicon glyphicon-trash" />
+								<f:setPropertyActionListener
+									target="#{veiculoController.veiculoSelecionado}" value="#{j}" />
+							</button>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
