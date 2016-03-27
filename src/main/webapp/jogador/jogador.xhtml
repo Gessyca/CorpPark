@@ -92,38 +92,36 @@
 							<f:facet name="header">
 								<h:outputText value="Matricula" />
 							</f:facet>
-							<h:inputText value="#{j.matricula}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.matricula}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Nome" />
 							</f:facet>
-							<h:inputText value="#{j.nome}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.nome}" style="text-transform:uppercase" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Celular" />
 							</f:facet>
-							<h:inputText value="#{j.celular}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.celular}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Ramal" />
 							</f:facet>
-							<h:inputText value="#{j.ramal}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.ramal}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="E-mail" />
 							</f:facet>
-							<h:inputText value="#{j.email}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.email}" style="text-transform:uppercase" />
 						</h:column>
 						<h:column>
+						<f:facet name="header">
+								<h:outputText value="Remover" />
+							</f:facet>
 							<button jsf:id="btRemover"
 								jsf:action="#{jogadorController.remover()}"
 								class="btn btn-danger" type="submit" title="Remover">

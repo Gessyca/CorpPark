@@ -158,55 +158,50 @@
 						columnClasses="campoP,campoN,campoN,campoN,campoN,campoN,campoGG">
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="ID" />
+								<h:outputText value="#" />
 							</f:facet>
-							<h:inputText value="#{j.id}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.id}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Tipo" />
 							</f:facet>
-							<h:inputText value="#{j.tipo}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.tipo}"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Marca" />
 							</f:facet>
-							<h:inputText value="#{j.marca}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.marca}"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Modelo" />
 							</f:facet>
-							<h:inputText value="#{j.modelo}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.modelo}"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Placa" />
 							</f:facet>
-							<h:inputText value="#{j.placa}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.placa}" style="text-transform:uppercase"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Cor" />
 							</f:facet>
-							<h:inputText value="#{j.cor}" class="form-control semBorda"
-								p:type="string" p:required="true" disabled="true" />
+							<h:outputText value="#{j.cor}"/>
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Proprietario" />
 							</f:facet>
-							<h:inputText value="#{j.jogador.nome}"
-								class="form-control semBorda" p:type="string" p:required="true"
-								disabled="true" />
+							<h:outputText value="#{j.jogador.nome}" style="text-transform:uppercase"/>
 						</h:column>
 						<h:column>
+						<f:facet name="header">
+								<h:outputText value="Remover" />
+							</f:facet>
 							<button jsf:id="btRemover"
 								jsf:action="#{veiculoController.remover()}"
 								class="btn btn-danger" type="submit" title="Remover">

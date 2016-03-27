@@ -72,7 +72,6 @@ public class VeiculoController {
 		} else {
 			genericoJPA.salvar(veiculo)
 		}
-
 		inicializar()
 		veiculo = new Veiculo()
 		dataString = null
