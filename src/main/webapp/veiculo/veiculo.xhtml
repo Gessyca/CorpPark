@@ -23,14 +23,16 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<h:outputLabel value="Tipo:" styleClass="control-label" />
-												<h:selectOneMenu
-													value="#{veiculoController.veiculo.tipo}"
+												<h:selectOneMenu value="#{veiculoController.veiculo.tipo}"
 													class="form-control">
-													<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+													<f:selectItem itemLabel="Selecione..."
+														noSelectionOption="true" selected="true" />
 													<f:selectItem itemLabel="CARRO" itemValue="CARRO" />
 													<f:selectItem itemLabel="MOTO" itemValue="MOTO" />
-													<f:selectItem itemLabel="OUTROS" itemValue="OUTROS" />
-													<f:ajax event="change" listener="#{veiculoController.atualizalistaMarcas()}" render=":form1" />
+													<f:selectItem itemLabel="OUTRO" itemValue="OUTRO" />
+													<f:ajax event="change" partialSubmit="true"
+														listener="#{veiculoController.atualizalistaMarcas()}"
+														render=":form1" />
 												</h:selectOneMenu>
 											</div>
 										</div>
@@ -40,42 +42,62 @@
 												<h:outputLabel value="Marca:" styleClass="control-label" />
 												<h:selectOneMenu id="marca"
 													value="#{veiculoController.veiculo.marca}"
-													class="form-control" rendered="#{veiculoController.veiculo.tipo != 'OUTROS'}">
-													<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
-													<f:selectItems
-														value="#{veiculoController.marcas}"
-														var="j" itemLabel="#{j}" itemValue="#{j}" />
+													class="form-control"
+													rendered="#{veiculoController.veiculo.tipo != 'OUTRO'}">
+													<f:selectItem
+														itemLabel="Selecione                                       "
+														noSelectionOption="true" />
+													<f:selectItems value="#{veiculoController.marcas}" var="j"
+														itemLabel="#{j}" itemValue="#{j}" />
+													<f:ajax event="change" partialSubmit="true"
+														listener="#{veiculoController.atualizalistaModelos()}"
+														render=":form1" />
 												</h:selectOneMenu>
-												<h:inputText  id="marcaInput" class="form-control"
-													value="#{veiculoController.veiculo.marca}" rendered="#{veiculoController.veiculo.tipo == 'OUTROS'}" 
-													p:placeholder="Informe a marca"/>
+												<h:inputText id="marca2" class="form-control"
+													value="#{veiculoController.veiculo.marca}"
+													rendered="#{veiculoController.veiculo.tipo == 'OUTRO'}"
+													p:placeholder="Informe a marca" />
+
 											</div>
 										</div>
-										
+
 										<div class="col-md-6">
 											<div class="form-group">
 												<h:outputLabel value="Modelo:" styleClass="control-label" />
-												<h:inputText class="form-control"
+												<h:selectOneMenu id="modelo"
 													value="#{veiculoController.veiculo.modelo}"
-													p:required="true" />
+													class="form-control"
+													rendered="#{veiculoController.veiculo.tipo != 'OUTRO'}">
+													<f:selectItem
+														itemLabel="Selecione                                       "
+														noSelectionOption="true" />
+													<f:selectItems value="#{veiculoController.modelos}" var="j"
+														itemLabel="#{j}" itemValue="#{j}" />
+												</h:selectOneMenu>
+												<h:inputText id="marca3" class="form-control"
+													value="#{veiculoController.veiculo.modelo}"
+													rendered="#{veiculoController.veiculo.tipo == 'OUTRO'}"
+													p:placeholder="Informe o modelo" />
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<h:outputLabel value="Placa:" styleClass="control-label" />
-												<h:inputText class="form-control" styleClass="form-control placa" style="text-transform:uppercase"
-													value="#{veiculoController.veiculo.placa}" p:required="true" />
+												<h:inputText class="form-control placa"
+													style="text-transform:uppercase"
+													value="#{veiculoController.veiculo.placa}"
+													p:required="true" />
 											</div>
 										</div>
-										
+
 										<div class="col-md-6">
 											<div class="form-group">
 												<h:outputLabel value="Cor:" styleClass="control-label" />
-												<h:selectOneMenu
-													value="#{veiculoController.veiculo.cor}"
+												<h:selectOneMenu value="#{veiculoController.veiculo.cor}"
 													class="form-control">
-													<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+													<f:selectItem itemLabel="Selecione..."
+														noSelectionOption="true" />
 													<f:selectItem itemLabel="BRANCO" itemValue="BRANCO" />
 													<f:selectItem itemLabel="PRATA" itemValue="PRATA" />
 													<f:selectItem itemLabel="PRETO" itemValue="PRETO" />
@@ -94,12 +116,11 @@
 											<div class="form-group">
 												<h:outputLabel value="Proprietario:"
 													styleClass="control-label" />
-												<h:selectOneMenu
-													value="#{veiculoController.idTemp}"
+												<h:selectOneMenu value="#{veiculoController.idTemp}"
 													class="form-control">
-													<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
-													<f:selectItems
-														value="#{veiculoController.colaboradores}"
+													<f:selectItem itemLabel="Selecione..."
+														noSelectionOption="true" />
+													<f:selectItems value="#{veiculoController.colaboradores}"
 														var="j" itemLabel="#{j.nome}" itemValue="#{j.id}" />
 												</h:selectOneMenu>
 											</div>

@@ -26,9 +26,10 @@ public class VeiculoController {
 	int idVeiculo
 	List<Jogador> colaboradores
 	def marcas
-	
+	def modelos
+
 	Integer idTemp
-	
+
 	Veiculo veiculo
 
 	@PostConstruct
@@ -37,19 +38,34 @@ public class VeiculoController {
 		veiculos = genericoJPA.buscarTodosVeiculos()
 		colaboradores = genericoJPA.buscarTodosJogadores()
 	}
-	
+
 	void atualizalistaMarcas(){
 		if(veiculo.tipo == 'CARRO'){
-			marcas = ['CHEVROLET', 'RENAULT', 'JEEP', 'FIAT']
+			marcas = [
+				'CHEVROLET',
+				'RENAULT',
+				'JEEP',
+				'FIAT'
+			]
 		}else if(veiculo.tipo == 'MOTO'){
-		    marcas = ['NAO SEI ']
+			marcas = ['NAO SEI ']
 		} else {
 			marcas = ['ESCOLHA UM TIPO...']
 		}
 	}
 
+	void atualizalistaModelos(){
+		if(veiculo.marca == 'CHEVROLET') {
+			modelos = ['CHEVROLET-1']
+		} else if(veiculo.marca == 'RENAULT') {
+			modelos = ['RENAULT-1']
+		} else {
+			modelos = ['ESCOLHA UMA MARCA']
+		}
+	}
+
 	public void salvar() {
-		
+
 		veiculo.jogador = genericoJPA.buscarJogadorPorId(idTemp)
 		if (veiculo.getId() > 0) {
 			genericoJPA.atualizar(veiculo)
